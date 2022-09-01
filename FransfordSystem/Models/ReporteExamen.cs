@@ -14,10 +14,14 @@ namespace FransfordSystem.Models
         [Required(ErrorMessage = "Este campo es obligatorio")]
         [DataType(DataType.Date)]
         [Column(TypeName = "Date")]
-        public DateTime fechaNacimiento { get; set; }
+        public DateTime fechaReporte { get; set; }
+
+        [Display(Name = "Cliente")]
+        [Required(ErrorMessage = "Este campo es obligatorio")]
+        public int idCliente { get; set; }
+        public Cliente? cliente { get; set; }
 
 
-
-        public ICollection<Examen>? examenes { get; set; }
+        public ICollection<Resultado>? resultados { get; set; }
     }
 }

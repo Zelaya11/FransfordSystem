@@ -37,5 +37,7 @@ namespace FransfordSystem.Models
         [Required(ErrorMessage = "Este campo es obligatorio")]
         public int idUnidad { get; set; }
         public Unidad? unidad { get; set; }
+
+        public ICollection<Resultado>? resultados { get; set; }
     }
 }

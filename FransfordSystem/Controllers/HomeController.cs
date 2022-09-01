@@ -86,6 +86,10 @@ namespace FransfordSystem.Controllers
         {
             return RedirectToAction("Index", "Clientes");
         }
+        public ActionResult IndexReporte()
+        {
+            return RedirectToAction("Index", "ReporteExamen");
+        }
         public ActionResult IndexExamen()
         {
             return RedirectToAction("Index", "Examenes");

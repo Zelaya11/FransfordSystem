@@ -38,7 +38,6 @@ namespace FransfordSystem.Models
         public string nombreMuestra { get; set; }
 
 
-        public ICollection<ReporteExamen>? reporteExamenes { get; set; }
     }
 
 
