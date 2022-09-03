@@ -54,6 +54,14 @@ namespace FransfordSystem.Controllers
                 clientesLista = (from cliente in _context.Cliente select cliente).ToList();
                 clientesLista.Insert(0, new Cliente { IdCliente = 0, nombreCliente = "Seleccionar" });
                 ViewBag.clienteDeLista = clientesLista;
+                
+
+                //Genera lista de examenes
+
+                List<Examen> examenesLista = new List<Examen>();
+                examenesLista = (from examen in _context.Examen select examen).ToList();
+                examenesLista.Insert(0, new Examen { idExamen = 0, nombreExamen = "Seleccionar" });
+                ViewBag.examenDeLista = examenesLista;
                 return View();
             }
             else
