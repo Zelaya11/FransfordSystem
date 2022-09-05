@@ -17,11 +17,16 @@ namespace FransfordSystem.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
+<<<<<<< Updated upstream
                 .HasAnnotation("ProductVersion", "6.0.8")
+=======
+                .HasAnnotation("ProductVersion", "6.0.5")
+>>>>>>> Stashed changes
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+<<<<<<< Updated upstream
             modelBuilder.Entity("FransfordSystem.Models.Asistencia", b =>
                 {
                     b.Property<int>("IdAsistencia")
@@ -47,6 +52,21 @@ namespace FransfordSystem.Migrations
                     b.HasIndex("usuarioId");
 
                     b.ToTable("Asistencia");
+=======
+            modelBuilder.Entity("ExamenReporteExamen", b =>
+                {
+                    b.Property<int>("examenesidExamen")
+                        .HasColumnType("int");
+
+                    b.Property<int>("reporteExamenesIdReporteExamen")
+                        .HasColumnType("int");
+
+                    b.HasKey("examenesidExamen", "reporteExamenesIdReporteExamen");
+
+                    b.HasIndex("reporteExamenesIdReporteExamen");
+
+                    b.ToTable("ExamenReporteExamen");
+>>>>>>> Stashed changes
                 });
 
             modelBuilder.Entity("FransfordSystem.Models.Categoria", b =>
@@ -66,6 +86,39 @@ namespace FransfordSystem.Migrations
                     b.ToTable("Categoria");
                 });
 
+<<<<<<< Updated upstream
+=======
+            modelBuilder.Entity("FransfordSystem.Models.Cita", b =>
+                {
+                    b.Property<int>("idCita")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idCita"), 1L, 1);
+
+                    b.Property<int?>("clienteIdCliente")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("fechaCita")
+                        .HasColumnType("Date");
+
+                    b.Property<string>("horaCita")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("idCliente")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("nombreEmpresa")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("idCita");
+
+                    b.HasIndex("clienteIdCliente");
+
+                    b.ToTable("Cita");
+                });
+
+>>>>>>> Stashed changes
             modelBuilder.Entity("FransfordSystem.Models.Cliente", b =>
                 {
                     b.Property<int>("IdCliente")
@@ -181,6 +234,7 @@ namespace FransfordSystem.Migrations
                     b.ToTable("Examen");
                 });
 
+<<<<<<< Updated upstream
             modelBuilder.Entity("FransfordSystem.Models.Producto", b =>
                 {
                     b.Property<int>("IdProducto")
@@ -202,6 +256,8 @@ namespace FransfordSystem.Migrations
                     b.ToTable("Producto");
                 });
 
+=======
+>>>>>>> Stashed changes
             modelBuilder.Entity("FransfordSystem.Models.ReporteExamen", b =>
                 {
                     b.Property<int>("IdReporteExamen")
@@ -210,6 +266,7 @@ namespace FransfordSystem.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdReporteExamen"), 1L, 1);
 
+<<<<<<< Updated upstream
                     b.Property<int?>("clienteIdCliente")
                         .HasColumnType("int");
 
@@ -222,10 +279,22 @@ namespace FransfordSystem.Migrations
                     b.HasKey("IdReporteExamen");
 
                     b.HasIndex("clienteIdCliente");
+=======
+                    b.Property<int?>("ClienteIdCliente")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("fechaNacimiento")
+                        .HasColumnType("Date");
+
+                    b.HasKey("IdReporteExamen");
+
+                    b.HasIndex("ClienteIdCliente");
+>>>>>>> Stashed changes
 
                     b.ToTable("ReporteExamen");
                 });
 
+<<<<<<< Updated upstream
             modelBuilder.Entity("FransfordSystem.Models.Resultado", b =>
                 {
                     b.Property<int>("IdResultado")
@@ -259,6 +328,8 @@ namespace FransfordSystem.Migrations
                     b.ToTable("Resultado");
                 });
 
+=======
+>>>>>>> Stashed changes
             modelBuilder.Entity("FransfordSystem.Models.Unidad", b =>
                 {
                     b.Property<int>("idUnidad")
@@ -496,6 +567,7 @@ namespace FransfordSystem.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+<<<<<<< Updated upstream
             modelBuilder.Entity("FransfordSystem.Models.Asistencia", b =>
                 {
                     b.HasOne("FransfordSystem.Models.Usuario", "usuario")
@@ -503,6 +575,30 @@ namespace FransfordSystem.Migrations
                         .HasForeignKey("usuarioId");
 
                     b.Navigation("usuario");
+=======
+            modelBuilder.Entity("ExamenReporteExamen", b =>
+                {
+                    b.HasOne("FransfordSystem.Models.Examen", null)
+                        .WithMany()
+                        .HasForeignKey("examenesidExamen")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FransfordSystem.Models.ReporteExamen", null)
+                        .WithMany()
+                        .HasForeignKey("reporteExamenesIdReporteExamen")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("FransfordSystem.Models.Cita", b =>
+                {
+                    b.HasOne("FransfordSystem.Models.Cliente", "cliente")
+                        .WithMany("cita")
+                        .HasForeignKey("clienteIdCliente");
+
+                    b.Navigation("cliente");
+>>>>>>> Stashed changes
                 });
 
             modelBuilder.Entity("FransfordSystem.Models.Cliente", b =>
@@ -540,6 +636,7 @@ namespace FransfordSystem.Migrations
 
             modelBuilder.Entity("FransfordSystem.Models.ReporteExamen", b =>
                 {
+<<<<<<< Updated upstream
                     b.HasOne("FransfordSystem.Models.Cliente", "cliente")
                         .WithMany("reporteExamenes")
                         .HasForeignKey("clienteIdCliente");
@@ -560,6 +657,11 @@ namespace FransfordSystem.Migrations
                     b.Navigation("descripcion");
 
                     b.Navigation("reporteExamen");
+=======
+                    b.HasOne("FransfordSystem.Models.Cliente", null)
+                        .WithMany("reporteExamenes")
+                        .HasForeignKey("ClienteIdCliente");
+>>>>>>> Stashed changes
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -620,12 +722,18 @@ namespace FransfordSystem.Migrations
 
             modelBuilder.Entity("FransfordSystem.Models.Cliente", b =>
                 {
+<<<<<<< Updated upstream
                     b.Navigation("reporteExamenes");
                 });
 
             modelBuilder.Entity("FransfordSystem.Models.Descripcion", b =>
                 {
                     b.Navigation("resultados");
+=======
+                    b.Navigation("cita");
+
+                    b.Navigation("reporteExamenes");
+>>>>>>> Stashed changes
                 });
 
             modelBuilder.Entity("FransfordSystem.Models.Examen", b =>
@@ -633,11 +741,14 @@ namespace FransfordSystem.Migrations
                     b.Navigation("descripcion");
                 });
 
+<<<<<<< Updated upstream
             modelBuilder.Entity("FransfordSystem.Models.ReporteExamen", b =>
                 {
                     b.Navigation("resultados");
                 });
 
+=======
+>>>>>>> Stashed changes
             modelBuilder.Entity("FransfordSystem.Models.Unidad", b =>
                 {
                     b.Navigation("descripcion");
