@@ -1,0 +1,35 @@
+﻿@model FransfordSystem.Models.Producto
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Detalles del producto</h1>
+
+<div>
+    <h4>Consulta de la información completa del registro de los productos</h4>
+    <hr />
+    <table style="width:auto; height:20px" class="table table-condensed table-bordered table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nombreProducto)
+            </th>
+            <th>
+                @Html.DisplayFor(model => model.nombreProducto)
+            </th>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.proveedorProducto)
+            </th>
+            <th>
+                @Html.DisplayFor(model => model.proveedorProducto)
+            </th>
+        </tr>
+    </table>
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.IdProducto">Editar</a> |
+    <a asp-action="Index">Volver a la lista</a>
+</div>

@@ -1,0 +1,35 @@
+﻿@model FransfordSystem.Models.Producto
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Nuevo producto</h1>
+
+<h4>Complete la siguiente información</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        
+            <div class="form-group">
+                <label asp-for="nombreProducto" class="control-label"></label>
+                <input asp-for="nombreProducto" class="form-control" placeholder="Nombre del producto" />
+                <span asp-validation-for="nombreProducto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="proveedorProducto" class="control-label"></label>
+                <input asp-for="proveedorProducto" class="form-control" placeholder="Nombre del proveedor" />
+                <span asp-validation-for="proveedorProducto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-success" id="success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Volver a la lista</a>
+</div>

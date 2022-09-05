@@ -1,0 +1,40 @@
+﻿@model FransfordSystem.Models.Producto
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<link rel="stylesheet" type="text/css" href="~/css/opciones.css">
+
+<h1>Eliminar producto</h1>
+
+<h3>¿Realmente desea eliminar este registro del producto?</h3>
+<div>
+    <hr />
+    <table style="width:auto; height:20px" class="table table-condensed table-bordered table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nombreProducto)
+            </th>
+            <th id="letranormal">
+                @Html.DisplayFor(model => model.nombreProducto)
+            </th>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.proveedorProducto)
+            </th>
+            <th>
+                @Html.DisplayFor(model => model.proveedorProducto)
+            </th>
+        </tr>
+
+    </table>
+
+   
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="IdProducto" />
+        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+        <a asp-action="Index">Volver a la lista</a>
+    </form>
+</div>
