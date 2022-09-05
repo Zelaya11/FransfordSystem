@@ -1,0 +1,58 @@
+﻿@model FransfordSystem.Models.Cita
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<link rel="stylesheet" type="text/css" href="~/css/opciones.css">
+
+<h1>Eliminar cita</h1>
+
+<h3>¿Realmente desea eliminar esta cita?</h3>
+<div>
+   
+    <hr />
+
+    <table style="width:auto; height:20px" class="table table-condensed table-bordered table-hover">
+ 
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.idCliente)
+            </th>
+            <th>
+                @Html.DisplayFor(model => model.idCliente)
+            </th>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nombreEmpresa)
+            </th>
+            <th>
+                @Html.DisplayFor(model => model.nombreEmpresa)
+            </th>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.fechaCita)
+            </th>
+            <th>
+                @Html.DisplayFor(model => model.fechaCita)
+            </th>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.horaCita)
+            </th>
+            <th>
+                @Html.DisplayFor(model => model.horaCita)
+            </th>
+        </tr>
+ 
+    </table>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="idCita" />
+        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+        <a asp-action="Index">Regresar a la lista de citas</a>
+    </form>
+</div>

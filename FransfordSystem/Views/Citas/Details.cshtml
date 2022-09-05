@@ -1,0 +1,53 @@
+﻿@model FransfordSystem.Models.Cita
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Detalles de la cita</h1>
+
+<div>
+    <h4>Consulta de la información completa de la cita</h4>
+    <hr />
+ 
+    <table style="width:auto; height:20px" class="table table-condensed table-bordered table-hover">
+       <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.idCliente)
+            </th>
+            <th>
+                @Html.DisplayFor(model => model.idCliente)
+            </th>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nombreEmpresa)
+            </th>
+            <th>
+                @Html.DisplayFor(model => model.nombreEmpresa)
+            </th>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.fechaCita)
+            </th>
+            <th>
+                @Html.DisplayFor(model => model.fechaCita)
+            </th>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.horaCita)
+            </th>
+            <th>
+                @Html.DisplayFor(model => model.horaCita)
+            </th>
+        </tr>
+
+    </table>
+ }
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.idCita">Editar</a> |
+    <a asp-action="Index">Regresar a la lista</a>
+</div>

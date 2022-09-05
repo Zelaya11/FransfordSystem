@@ -1,0 +1,80 @@
+﻿@model FransfordSystem.Models.Cita
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Editar datos de la cita</h1>
+
+<h4>Modifique uno o varios campos de la cita</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="idCita" />
+            <div class="form-group">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        Empresa
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="idCliente" class="control-label"></label>
+                <select asp-for="idCliente" class="form-control" asp-items="@(new SelectList(@ViewBag.clienteDeLista, "IdCliente", "nombreCliente"))"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="nombreEmpresa" class="control-label"></label>
+                <input asp-for="nombreEmpresa" class="form-control" disabled="disabled"/>
+                <span asp-validation-for="nombreEmpresa" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="fechaCita" class="control-label"></label>
+                <input asp-for="fechaCita" class="form-control" />
+                <span asp-validation-for="fechaCita" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="horaCita" class="control-label"></label>
+                <input asp-for="horaCita" class="form-control" placeholder="Formato hh:mm (24 horas)" />
+                <span asp-validation-for="horaCita" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Regresar a la lista de citas</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script type="text/javascript">
+        let opcion = document.getElementById("flexCheckDefault")
+        let caja1 = document.getElementById("idCliente")
+        let caja2 = document.getElementById("horaCita")
+        let caja3 = document.getElementById("nombreEmpresa")
+        opcion.addEventListener("change", validaCheckbox, false);
+        function validaCheckbox() {
+            let checked = opcion.checked;
+            if (checked) {
+                caja1.disabled = true
+                caja2.disabled = true
+                caja3.disabled = false
+                caja1.value = ""
+                caja2.value = ""
+            } else {
+                caja1.disabled = false
+                caja2.disabled = false 
+                caja3.disabled = true
+                caja3.value = ""
+            }
+
+        }
+    </script>
+}

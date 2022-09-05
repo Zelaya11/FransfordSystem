@@ -45,6 +45,7 @@ namespace FransfordSystem.Models
         [RegularExpression(@"^[0-9]{8}-[0-9]{1}$", ErrorMessage = "El formato de DUI no es correcto, asegúrese de agregar el guión")]
         public string? dui { get; set; }
 
+        public ICollection<Cita>? cita { get; set; }
         public ICollection<ReporteExamen>? reporteExamenes { get; set; }
 
 

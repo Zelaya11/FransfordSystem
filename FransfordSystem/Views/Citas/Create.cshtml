@@ -1,0 +1,113 @@
+﻿@model FransfordSystem.Models.Cita
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Nueva cita</h1>
+
+<h4>Complete la siguiente información</h4>
+<hr />
+
+<div class="alert alert-light" role="alert" >
+    <strong>
+                Indicaciones:
+                <br/>
+                <br/>
+                A)- Si la cita es para un cliente.
+                <br/>
+                <br/>
+                1- Seleccionar el nombre del cliente deseado, a partir de los nombres proporcionados por la lista desplegable de clientes.
+                <br/>
+                2- Seleccionar la fecha en que se realizará la cita, por medio del ícono del calendario.
+                <br/>
+                3- Escribir la hora en la cuál se realizará la cita. El formato debe ser hh:mm (24 horas).
+                <br/>
+                4- Presionar el botón "Crear" para registrar la cita.
+                 
+                <br/>
+                <br/>
+                B)- Si la cita es para una empresa.
+                <br/>
+                <br/>
+                1- Marcar el cuadro ubicado a un lado de la etiqueta "Empresa".
+                <br/>
+                2- Escribir el nombre de la empresa.
+                <br/>
+                3- Seleccionar la fecha en que se realizará la cita, por medio del ícono del calendario.
+                <br/>
+                4- Presionar el botón "Crear" para registrar la cita.
+                </strong>
+            </div>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>          
+
+            <div class="form-group">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        Empresa
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="idCliente" class="control-label"></label>
+                <select asp-for="idCliente" class="form-control" asp-items="@(new SelectList(@ViewBag.clienteDeLista, "IdCliente", "nombreCliente"))"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="nombreEmpresa" class="control-label"></label>
+                <input asp-for="nombreEmpresa" class="form-control" disabled="disabled" />
+                <span asp-validation-for="nombreEmpresa" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="fechaCita" class="control-label"></label>
+                <input asp-for="fechaCita" class="form-control" />
+                <span asp-validation-for="fechaCita" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="horaCita" class="control-label"></label>
+                <input asp-for="horaCita" class="form-control" placeholder="Formato hh:mm (24 horas)" />
+                <span asp-validation-for="horaCita" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-success" id="success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Volver a la lista</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script type="text/javascript">
+        let opcion = document.getElementById("flexCheckDefault")
+        let caja1 = document.getElementById("idCliente")
+        let caja2 = document.getElementById("horaCita")
+        let caja3 = document.getElementById("nombreEmpresa")
+        opcion.addEventListener("change", validaCheckbox, false);
+        function validaCheckbox() {
+            let checked = opcion.checked;
+            if (checked) {
+                caja1.disabled = true
+                caja2.disabled = true
+                caja3.disabled = false
+                caja1.value = ""
+                caja2.value = ""
+            } else {
+                caja1.disabled = false
+                caja2.disabled = false
+                caja3.disabled = true
+                caja3.value = ""
+            }
+
+        }
+    </script>
+}
