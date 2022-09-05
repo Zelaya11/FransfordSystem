@@ -17,16 +17,16 @@ namespace FransfordSystem.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-<<<<<<< Updated upstream
+
                 .HasAnnotation("ProductVersion", "6.0.8")
-=======
+
                 .HasAnnotation("ProductVersion", "6.0.5")
->>>>>>> Stashed changes
+
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-<<<<<<< Updated upstream
+
             modelBuilder.Entity("FransfordSystem.Models.Asistencia", b =>
                 {
                     b.Property<int>("IdAsistencia")
@@ -52,713 +52,711 @@ namespace FransfordSystem.Migrations
                     b.HasIndex("usuarioId");
 
                     b.ToTable("Asistencia");
-=======
-            modelBuilder.Entity("ExamenReporteExamen", b =>
-                {
-                    b.Property<int>("examenesidExamen")
-                        .HasColumnType("int");
 
-                    b.Property<int>("reporteExamenesIdReporteExamen")
-                        .HasColumnType("int");
+                    modelBuilder.Entity("ExamenReporteExamen", b =>
+                        {
+                            b.Property<int>("examenesidExamen")
+                                .HasColumnType("int");
 
-                    b.HasKey("examenesidExamen", "reporteExamenesIdReporteExamen");
+                            b.Property<int>("reporteExamenesIdReporteExamen")
+                                .HasColumnType("int");
 
-                    b.HasIndex("reporteExamenesIdReporteExamen");
+                            b.HasKey("examenesidExamen", "reporteExamenesIdReporteExamen");
 
-                    b.ToTable("ExamenReporteExamen");
->>>>>>> Stashed changes
-                });
+                            b.HasIndex("reporteExamenesIdReporteExamen");
 
-            modelBuilder.Entity("FransfordSystem.Models.Categoria", b =>
-                {
-                    b.Property<int>("IdCategoria")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                            b.ToTable("ExamenReporteExamen");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdCategoria"), 1L, 1);
+                        });
 
-                    b.Property<string>("nombreCategoria")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    modelBuilder.Entity("FransfordSystem.Models.Categoria", b =>
+                        {
+                            b.Property<int>("IdCategoria")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int");
 
-                    b.HasKey("IdCategoria");
+                            SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdCategoria"), 1L, 1);
 
-                    b.ToTable("Categoria");
-                });
+                            b.Property<string>("nombreCategoria")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
 
-<<<<<<< Updated upstream
-=======
-            modelBuilder.Entity("FransfordSystem.Models.Cita", b =>
-                {
-                    b.Property<int>("idCita")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                            b.HasKey("IdCategoria");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idCita"), 1L, 1);
+                            b.ToTable("Categoria");
+                        });
 
-                    b.Property<int?>("clienteIdCliente")
-                        .HasColumnType("int");
 
-                    b.Property<DateTime>("fechaCita")
-                        .HasColumnType("Date");
+                    modelBuilder.Entity("FransfordSystem.Models.Cita", b =>
+                        {
+                            b.Property<int>("idCita")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int");
 
-                    b.Property<string>("horaCita")
-                        .HasColumnType("nvarchar(max)");
+                            SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idCita"), 1L, 1);
 
-                    b.Property<string>("idCliente")
-                        .HasColumnType("nvarchar(max)");
+                            b.Property<int?>("clienteIdCliente")
+                                .HasColumnType("int");
 
-                    b.Property<string>("nombreEmpresa")
-                        .HasColumnType("nvarchar(max)");
+                            b.Property<DateTime>("fechaCita")
+                                .HasColumnType("Date");
 
-                    b.HasKey("idCita");
+                            b.Property<string>("horaCita")
+                                .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("clienteIdCliente");
+                            b.Property<string>("idCliente")
+                                .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("Cita");
-                });
+                            b.Property<string>("nombreEmpresa")
+                                .HasColumnType("nvarchar(max)");
 
->>>>>>> Stashed changes
-            modelBuilder.Entity("FransfordSystem.Models.Cliente", b =>
-                {
-                    b.Property<int>("IdCliente")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                            b.HasKey("idCita");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdCliente"), 1L, 1);
+                            b.HasIndex("clienteIdCliente");
 
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
+                            b.ToTable("Cita");
+                        });
 
-                    b.Property<string>("apellidoCliente")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("dui")
-                        .HasColumnType("nvarchar(max)");
+                    modelBuilder.Entity("FransfordSystem.Models.Cliente", b =>
+                        {
+                            b.Property<int>("IdCliente")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int");
 
-                    b.Property<DateTime>("fechaNacimiento")
-                        .HasColumnType("Date");
+                            SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdCliente"), 1L, 1);
 
-                    b.Property<string>("genero")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                            b.Property<string>("UserName")
+                                .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("nombreCliente")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                            b.Property<string>("apellidoCliente")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("telefono")
-                        .HasColumnType("nvarchar(max)");
+                            b.Property<string>("dui")
+                                .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("usuarioId")
-                        .HasColumnType("nvarchar(450)");
+                            b.Property<DateTime>("fechaNacimiento")
+                                .HasColumnType("Date");
 
-                    b.HasKey("IdCliente");
+                            b.Property<string>("genero")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("usuarioId");
+                            b.Property<string>("nombreCliente")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("Cliente");
-                });
+                            b.Property<string>("telefono")
+                                .HasColumnType("nvarchar(max)");
 
-            modelBuilder.Entity("FransfordSystem.Models.Descripcion", b =>
-                {
-                    b.Property<int>("idDescripcion")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                            b.Property<string>("usuarioId")
+                                .HasColumnType("nvarchar(450)");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idDescripcion"), 1L, 1);
+                            b.HasKey("IdCliente");
 
-                    b.Property<string>("descripcionExamen")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                            b.HasIndex("usuarioId");
 
-                    b.Property<int?>("examenidExamen")
-                        .HasColumnType("int");
+                            b.ToTable("Cliente");
+                        });
 
-                    b.Property<int>("idExamen")
-                        .HasColumnType("int");
+                    modelBuilder.Entity("FransfordSystem.Models.Descripcion", b =>
+                        {
+                            b.Property<int>("idDescripcion")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int");
 
-                    b.Property<int>("idUnidad")
-                        .HasColumnType("int");
+                            SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idDescripcion"), 1L, 1);
 
-                    b.Property<int?>("unidadidUnidad")
-                        .HasColumnType("int");
+                            b.Property<string>("descripcionExamen")
+                                .IsRequired()
+                                .HasMaxLength(50)
+                                .HasColumnType("nvarchar(50)");
 
-                    b.Property<float?>("valorMaximo")
-                        .HasColumnType("real");
+                            b.Property<int?>("examenidExamen")
+                                .HasColumnType("int");
 
-                    b.Property<float?>("valorMinimo")
-                        .HasColumnType("real");
+                            b.Property<int>("idExamen")
+                                .HasColumnType("int");
 
-                    b.HasKey("idDescripcion");
+                            b.Property<int>("idUnidad")
+                                .HasColumnType("int");
 
-                    b.HasIndex("examenidExamen");
+                            b.Property<int?>("unidadidUnidad")
+                                .HasColumnType("int");
 
-                    b.HasIndex("unidadidUnidad");
+                            b.Property<float?>("valorMaximo")
+                                .HasColumnType("real");
 
-                    b.ToTable("Descripcion");
-                });
+                            b.Property<float?>("valorMinimo")
+                                .HasColumnType("real");
 
-            modelBuilder.Entity("FransfordSystem.Models.Examen", b =>
-                {
-                    b.Property<int>("idExamen")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                            b.HasKey("idDescripcion");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idExamen"), 1L, 1);
+                            b.HasIndex("examenidExamen");
 
-                    b.Property<float?>("PrecioExamen")
-                        .IsRequired()
-                        .HasColumnType("real");
+                            b.HasIndex("unidadidUnidad");
 
-                    b.Property<int?>("categoriaIdCategoria")
-                        .HasColumnType("int");
+                            b.ToTable("Descripcion");
+                        });
 
-                    b.Property<int>("idCategoria")
-                        .HasColumnType("int");
+                    modelBuilder.Entity("FransfordSystem.Models.Examen", b =>
+                        {
+                            b.Property<int>("idExamen")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int");
 
-                    b.Property<string>("nombreExamen")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                            SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idExamen"), 1L, 1);
 
-                    b.Property<string>("nombreMuestra")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                            b.Property<float?>("PrecioExamen")
+                                .IsRequired()
+                                .HasColumnType("real");
 
-                    b.HasKey("idExamen");
+                            b.Property<int?>("categoriaIdCategoria")
+                                .HasColumnType("int");
 
-                    b.HasIndex("categoriaIdCategoria");
+                            b.Property<int>("idCategoria")
+                                .HasColumnType("int");
 
-                    b.ToTable("Examen");
-                });
+                            b.Property<string>("nombreExamen")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
 
-<<<<<<< Updated upstream
-            modelBuilder.Entity("FransfordSystem.Models.Producto", b =>
-                {
-                    b.Property<int>("IdProducto")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                            b.Property<string>("nombreMuestra")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdProducto"), 1L, 1);
+                            b.HasKey("idExamen");
 
-                    b.Property<string>("nombreProducto")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                            b.HasIndex("categoriaIdCategoria");
 
-                    b.Property<string>("proveedorProducto")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                            b.ToTable("Examen");
+                        });
 
-                    b.HasKey("IdProducto");
 
-                    b.ToTable("Producto");
-                });
+                    modelBuilder.Entity("FransfordSystem.Models.Producto", b =>
+                        {
+                            b.Property<int>("IdProducto")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int");
 
-=======
->>>>>>> Stashed changes
-            modelBuilder.Entity("FransfordSystem.Models.ReporteExamen", b =>
-                {
-                    b.Property<int>("IdReporteExamen")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                            SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdProducto"), 1L, 1);
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdReporteExamen"), 1L, 1);
+                            b.Property<string>("nombreProducto")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
 
-<<<<<<< Updated upstream
-                    b.Property<int?>("clienteIdCliente")
-                        .HasColumnType("int");
+                            b.Property<string>("proveedorProducto")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("fechaReporte")
-                        .HasColumnType("Date");
+                            b.HasKey("IdProducto");
 
-                    b.Property<int>("idCliente")
-                        .HasColumnType("int");
+                            b.ToTable("Producto");
+                        });
 
-                    b.HasKey("IdReporteExamen");
 
-                    b.HasIndex("clienteIdCliente");
-=======
-                    b.Property<int?>("ClienteIdCliente")
-                        .HasColumnType("int");
+                    modelBuilder.Entity("FransfordSystem.Models.ReporteExamen", b =>
+                        {
+                            b.Property<int>("IdReporteExamen")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int");
 
-                    b.Property<DateTime>("fechaNacimiento")
-                        .HasColumnType("Date");
+                            SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdReporteExamen"), 1L, 1);
 
-                    b.HasKey("IdReporteExamen");
 
-                    b.HasIndex("ClienteIdCliente");
->>>>>>> Stashed changes
+                            b.Property<int?>("clienteIdCliente")
+                                .HasColumnType("int");
 
-                    b.ToTable("ReporteExamen");
-                });
+                            b.Property<DateTime>("fechaReporte")
+                                .HasColumnType("Date");
 
-<<<<<<< Updated upstream
-            modelBuilder.Entity("FransfordSystem.Models.Resultado", b =>
-                {
-                    b.Property<int>("IdResultado")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                            b.Property<int>("idCliente")
+                                .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdResultado"), 1L, 1);
+                            b.HasKey("IdReporteExamen");
 
-                    b.Property<int?>("descripcionidDescripcion")
-                        .HasColumnType("int");
+                            b.HasIndex("clienteIdCliente");
 
-                    b.Property<int>("idDescripcion")
-                        .HasColumnType("int");
+                            b.Property<int?>("ClienteIdCliente")
+                                .HasColumnType("int");
 
-                    b.Property<int>("idReporteExamen")
-                        .HasColumnType("int");
+                            b.Property<DateTime>("fechaNacimiento")
+                                .HasColumnType("Date");
 
-                    b.Property<int?>("reporteExamenIdReporteExamen")
-                        .HasColumnType("int");
+                            b.HasKey("IdReporteExamen");
 
-                    b.Property<string>("resultadoExamen")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                            b.HasIndex("ClienteIdCliente");
 
-                    b.HasKey("IdResultado");
 
-                    b.HasIndex("descripcionidDescripcion");
+                            b.ToTable("ReporteExamen");
+                        });
 
-                    b.HasIndex("reporteExamenIdReporteExamen");
 
-                    b.ToTable("Resultado");
-                });
+                    modelBuilder.Entity("FransfordSystem.Models.Resultado", b =>
+                        {
+                            b.Property<int>("IdResultado")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int");
 
-=======
->>>>>>> Stashed changes
-            modelBuilder.Entity("FransfordSystem.Models.Unidad", b =>
-                {
-                    b.Property<int>("idUnidad")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                            SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdResultado"), 1L, 1);
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idUnidad"), 1L, 1);
+                            b.Property<int?>("descripcionidDescripcion")
+                                .HasColumnType("int");
 
-                    b.Property<string>("nombreUnidad")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                            b.Property<int>("idDescripcion")
+                                .HasColumnType("int");
 
-                    b.HasKey("idUnidad");
+                            b.Property<int>("idReporteExamen")
+                                .HasColumnType("int");
 
-                    b.ToTable("Unidad");
-                });
+                            b.Property<int?>("reporteExamenIdReporteExamen")
+                                .HasColumnType("int");
 
-            modelBuilder.Entity("FransfordSystem.Models.Usuario", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                            b.Property<string>("resultadoExamen")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
+                            b.HasKey("IdResultado");
 
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
+                            b.HasIndex("descripcionidDescripcion");
 
-                    b.Property<string>("Email")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                            b.HasIndex("reporteExamenIdReporteExamen");
 
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
+                            b.ToTable("Resultado");
+                        });
 
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
 
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
+                    modelBuilder.Entity("FransfordSystem.Models.Unidad", b =>
+                        {
+                            b.Property<int>("idUnidad")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int");
 
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                            SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idUnidad"), 1L, 1);
 
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                            b.Property<string>("nombreUnidad")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
+                            b.HasKey("idUnidad");
 
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
+                            b.ToTable("Unidad");
+                        });
 
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
+                    modelBuilder.Entity("FransfordSystem.Models.Usuario", b =>
+                        {
+                            b.Property<string>("Id")
+                                .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
+                            b.Property<int>("AccessFailedCount")
+                                .HasColumnType("int");
 
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
+                            b.Property<string>("ConcurrencyStamp")
+                                .IsConcurrencyToken()
+                                .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                            b.Property<string>("Email")
+                                .HasMaxLength(256)
+                                .HasColumnType("nvarchar(256)");
 
-                    b.Property<string>("apellidoTrabajador")
-                        .HasColumnType("nvarchar(max)");
+                            b.Property<bool>("EmailConfirmed")
+                                .HasColumnType("bit");
 
-                    b.Property<int?>("cuentaBancaria")
-                        .HasColumnType("int");
+                            b.Property<bool>("LockoutEnabled")
+                                .HasColumnType("bit");
 
-                    b.Property<string>("dui")
-                        .HasColumnType("nvarchar(max)");
+                            b.Property<DateTimeOffset?>("LockoutEnd")
+                                .HasColumnType("datetimeoffset");
 
-                    b.Property<DateTime>("fechaNacimiento")
-                        .HasColumnType("Date");
+                            b.Property<string>("NormalizedEmail")
+                                .HasMaxLength(256)
+                                .HasColumnType("nvarchar(256)");
 
-                    b.Property<string>("genero")
-                        .HasColumnType("nvarchar(1)");
+                            b.Property<string>("NormalizedUserName")
+                                .HasMaxLength(256)
+                                .HasColumnType("nvarchar(256)");
 
-                    b.Property<string>("nombreTrabajador")
-                        .HasColumnType("nvarchar(max)");
+                            b.Property<string>("PasswordHash")
+                                .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                            b.Property<string>("PhoneNumber")
+                                .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
+                            b.Property<bool>("PhoneNumberConfirmed")
+                                .HasColumnType("bit");
 
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasDatabaseName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+                            b.Property<string>("SecurityStamp")
+                                .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("AspNetUsers", (string)null);
-                });
+                            b.Property<bool>("TwoFactorEnabled")
+                                .HasColumnType("bit");
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                            b.Property<string>("UserName")
+                                .HasMaxLength(256)
+                                .HasColumnType("nvarchar(256)");
 
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
+                            b.Property<string>("apellidoTrabajador")
+                                .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                            b.Property<int?>("cuentaBancaria")
+                                .HasColumnType("int");
 
-                    b.Property<string>("NormalizedName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                            b.Property<string>("dui")
+                                .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                            b.Property<DateTime>("fechaNacimiento")
+                                .HasColumnType("Date");
 
-                    b.HasIndex("NormalizedName")
-                        .IsUnique()
-                        .HasDatabaseName("RoleNameIndex")
-                        .HasFilter("[NormalizedName] IS NOT NULL");
+                            b.Property<string>("genero")
+                                .HasColumnType("nvarchar(1)");
 
-                    b.ToTable("AspNetRoles", (string)null);
-                });
+                            b.Property<string>("nombreTrabajador")
+                                .HasColumnType("nvarchar(max)");
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                            b.HasKey("Id");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                            b.HasIndex("NormalizedEmail")
+                                .HasDatabaseName("EmailIndex");
 
-                    b.Property<string>("ClaimType")
-                        .HasColumnType("nvarchar(max)");
+                            b.HasIndex("NormalizedUserName")
+                                .IsUnique()
+                                .HasDatabaseName("UserNameIndex")
+                                .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.Property<string>("ClaimValue")
-                        .HasColumnType("nvarchar(max)");
+                            b.ToTable("AspNetUsers", (string)null);
+                        });
 
-                    b.Property<string>("RoleId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
+                        {
+                            b.Property<string>("Id")
+                                .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("Id");
+                            b.Property<string>("ConcurrencyStamp")
+                                .IsConcurrencyToken()
+                                .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("RoleId");
+                            b.Property<string>("Name")
+                                .HasMaxLength(256)
+                                .HasColumnType("nvarchar(256)");
 
-                    b.ToTable("AspNetRoleClaims", (string)null);
-                });
+                            b.Property<string>("NormalizedName")
+                                .HasMaxLength(256)
+                                .HasColumnType("nvarchar(256)");
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                            b.HasKey("Id");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                            b.HasIndex("NormalizedName")
+                                .IsUnique()
+                                .HasDatabaseName("RoleNameIndex")
+                                .HasFilter("[NormalizedName] IS NOT NULL");
 
-                    b.Property<string>("ClaimType")
-                        .HasColumnType("nvarchar(max)");
+                            b.ToTable("AspNetRoles", (string)null);
+                        });
 
-                    b.Property<string>("ClaimValue")
-                        .HasColumnType("nvarchar(max)");
+                    modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                        {
+                            b.Property<int>("Id")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                            SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.HasKey("Id");
+                            b.Property<string>("ClaimType")
+                                .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("UserId");
+                            b.Property<string>("ClaimValue")
+                                .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("AspNetUserClaims", (string)null);
-                });
+                            b.Property<string>("RoleId")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(450)");
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
-                {
-                    b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                            b.HasKey("Id");
 
-                    b.Property<string>("ProviderKey")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                            b.HasIndex("RoleId");
 
-                    b.Property<string>("ProviderDisplayName")
-                        .HasColumnType("nvarchar(max)");
+                            b.ToTable("AspNetRoleClaims", (string)null);
+                        });
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                    modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                        {
+                            b.Property<int>("Id")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int");
 
-                    b.HasKey("LoginProvider", "ProviderKey");
+                            SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.HasIndex("UserId");
+                            b.Property<string>("ClaimType")
+                                .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("AspNetUserLogins", (string)null);
-                });
+                            b.Property<string>("ClaimValue")
+                                .HasColumnType("nvarchar(max)");
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
+                            b.Property<string>("UserId")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("RoleId")
-                        .HasColumnType("nvarchar(450)");
+                            b.HasKey("Id");
 
-                    b.HasKey("UserId", "RoleId");
+                            b.HasIndex("UserId");
 
-                    b.HasIndex("RoleId");
+                            b.ToTable("AspNetUserClaims", (string)null);
+                        });
 
-                    b.ToTable("AspNetUserRoles", (string)null);
-                });
+                    modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                        {
+                            b.Property<string>("LoginProvider")
+                                .HasMaxLength(128)
+                                .HasColumnType("nvarchar(128)");
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
+                            b.Property<string>("ProviderKey")
+                                .HasMaxLength(128)
+                                .HasColumnType("nvarchar(128)");
 
-                    b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                            b.Property<string>("ProviderDisplayName")
+                                .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                            b.Property<string>("UserId")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Value")
-                        .HasColumnType("nvarchar(max)");
+                            b.HasKey("LoginProvider", "ProviderKey");
 
-                    b.HasKey("UserId", "LoginProvider", "Name");
+                            b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserTokens", (string)null);
-                });
+                            b.ToTable("AspNetUserLogins", (string)null);
+                        });
 
-<<<<<<< Updated upstream
-            modelBuilder.Entity("FransfordSystem.Models.Asistencia", b =>
-                {
-                    b.HasOne("FransfordSystem.Models.Usuario", "usuario")
-                        .WithMany()
-                        .HasForeignKey("usuarioId");
+                    modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                        {
+                            b.Property<string>("UserId")
+                                .HasColumnType("nvarchar(450)");
 
-                    b.Navigation("usuario");
-=======
-            modelBuilder.Entity("ExamenReporteExamen", b =>
-                {
-                    b.HasOne("FransfordSystem.Models.Examen", null)
-                        .WithMany()
-                        .HasForeignKey("examenesidExamen")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                            b.Property<string>("RoleId")
+                                .HasColumnType("nvarchar(450)");
 
-                    b.HasOne("FransfordSystem.Models.ReporteExamen", null)
-                        .WithMany()
-                        .HasForeignKey("reporteExamenesIdReporteExamen")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
+                            b.HasKey("UserId", "RoleId");
 
-            modelBuilder.Entity("FransfordSystem.Models.Cita", b =>
-                {
-                    b.HasOne("FransfordSystem.Models.Cliente", "cliente")
-                        .WithMany("cita")
-                        .HasForeignKey("clienteIdCliente");
+                            b.HasIndex("RoleId");
 
-                    b.Navigation("cliente");
->>>>>>> Stashed changes
-                });
+                            b.ToTable("AspNetUserRoles", (string)null);
+                        });
 
-            modelBuilder.Entity("FransfordSystem.Models.Cliente", b =>
-                {
-                    b.HasOne("FransfordSystem.Models.Usuario", "usuario")
-                        .WithMany("clientes")
-                        .HasForeignKey("usuarioId");
+                    modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                        {
+                            b.Property<string>("UserId")
+                                .HasColumnType("nvarchar(450)");
 
-                    b.Navigation("usuario");
-                });
+                            b.Property<string>("LoginProvider")
+                                .HasMaxLength(128)
+                                .HasColumnType("nvarchar(128)");
 
-            modelBuilder.Entity("FransfordSystem.Models.Descripcion", b =>
-                {
-                    b.HasOne("FransfordSystem.Models.Examen", "examen")
-                        .WithMany("descripcion")
-                        .HasForeignKey("examenidExamen");
+                            b.Property<string>("Name")
+                                .HasMaxLength(128)
+                                .HasColumnType("nvarchar(128)");
 
-                    b.HasOne("FransfordSystem.Models.Unidad", "unidad")
-                        .WithMany("descripcion")
-                        .HasForeignKey("unidadidUnidad");
+                            b.Property<string>("Value")
+                                .HasColumnType("nvarchar(max)");
 
-                    b.Navigation("examen");
+                            b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.Navigation("unidad");
-                });
+                            b.ToTable("AspNetUserTokens", (string)null);
+                        });
 
-            modelBuilder.Entity("FransfordSystem.Models.Examen", b =>
-                {
-                    b.HasOne("FransfordSystem.Models.Categoria", "categoria")
-                        .WithMany("examen")
-                        .HasForeignKey("categoriaIdCategoria");
 
-                    b.Navigation("categoria");
-                });
+                    modelBuilder.Entity("FransfordSystem.Models.Asistencia", b =>
+                        {
+                            b.HasOne("FransfordSystem.Models.Usuario", "usuario")
+                                .WithMany()
+                                .HasForeignKey("usuarioId");
 
-            modelBuilder.Entity("FransfordSystem.Models.ReporteExamen", b =>
-                {
-<<<<<<< Updated upstream
-                    b.HasOne("FransfordSystem.Models.Cliente", "cliente")
-                        .WithMany("reporteExamenes")
-                        .HasForeignKey("clienteIdCliente");
+                            b.Navigation("usuario");
 
-                    b.Navigation("cliente");
-                });
+                            modelBuilder.Entity("ExamenReporteExamen", b =>
+                        {
+                            b.HasOne("FransfordSystem.Models.Examen", null)
+                                .WithMany()
+                                .HasForeignKey("examenesidExamen")
+                                .OnDelete(DeleteBehavior.Cascade)
+                                .IsRequired();
 
-            modelBuilder.Entity("FransfordSystem.Models.Resultado", b =>
-                {
-                    b.HasOne("FransfordSystem.Models.Descripcion", "descripcion")
-                        .WithMany("resultados")
-                        .HasForeignKey("descripcionidDescripcion");
+                            b.HasOne("FransfordSystem.Models.ReporteExamen", null)
+                                .WithMany()
+                                .HasForeignKey("reporteExamenesIdReporteExamen")
+                                .OnDelete(DeleteBehavior.Cascade)
+                                .IsRequired();
+                        });
 
-                    b.HasOne("FransfordSystem.Models.ReporteExamen", "reporteExamen")
-                        .WithMany("resultados")
-                        .HasForeignKey("reporteExamenIdReporteExamen");
+                            modelBuilder.Entity("FransfordSystem.Models.Cita", b =>
+                        {
+                            b.HasOne("FransfordSystem.Models.Cliente", "cliente")
+                                .WithMany("cita")
+                                .HasForeignKey("clienteIdCliente");
 
-                    b.Navigation("descripcion");
+                            b.Navigation("cliente");
 
-                    b.Navigation("reporteExamen");
-=======
-                    b.HasOne("FransfordSystem.Models.Cliente", null)
-                        .WithMany("reporteExamenes")
-                        .HasForeignKey("ClienteIdCliente");
->>>>>>> Stashed changes
-                });
+                        });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
+                            modelBuilder.Entity("FransfordSystem.Models.Cliente", b =>
+                        {
+                            b.HasOne("FransfordSystem.Models.Usuario", "usuario")
+                                .WithMany("clientes")
+                                .HasForeignKey("usuarioId");
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
-                {
-                    b.HasOne("FransfordSystem.Models.Usuario", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
+                            b.Navigation("usuario");
+                        });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
-                {
-                    b.HasOne("FransfordSystem.Models.Usuario", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
+                            modelBuilder.Entity("FransfordSystem.Models.Descripcion", b =>
+                        {
+                            b.HasOne("FransfordSystem.Models.Examen", "examen")
+                                .WithMany("descripcion")
+                                .HasForeignKey("examenidExamen");
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                            b.HasOne("FransfordSystem.Models.Unidad", "unidad")
+                                .WithMany("descripcion")
+                                .HasForeignKey("unidadidUnidad");
 
-                    b.HasOne("FransfordSystem.Models.Usuario", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
+                            b.Navigation("examen");
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
-                {
-                    b.HasOne("FransfordSystem.Models.Usuario", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
+                            b.Navigation("unidad");
+                        });
 
-            modelBuilder.Entity("FransfordSystem.Models.Categoria", b =>
-                {
-                    b.Navigation("examen");
-                });
+                            modelBuilder.Entity("FransfordSystem.Models.Examen", b =>
+                        {
+                            b.HasOne("FransfordSystem.Models.Categoria", "categoria")
+                                .WithMany("examen")
+                                .HasForeignKey("categoriaIdCategoria");
 
-            modelBuilder.Entity("FransfordSystem.Models.Cliente", b =>
-                {
-<<<<<<< Updated upstream
-                    b.Navigation("reporteExamenes");
-                });
+                            b.Navigation("categoria");
+                        });
 
-            modelBuilder.Entity("FransfordSystem.Models.Descripcion", b =>
-                {
-                    b.Navigation("resultados");
-=======
-                    b.Navigation("cita");
+                            modelBuilder.Entity("FransfordSystem.Models.ReporteExamen", b =>
+                        {
 
-                    b.Navigation("reporteExamenes");
->>>>>>> Stashed changes
-                });
+                            b.HasOne("FransfordSystem.Models.Cliente", "cliente")
+                                .WithMany("reporteExamenes")
+                                .HasForeignKey("clienteIdCliente");
 
-            modelBuilder.Entity("FransfordSystem.Models.Examen", b =>
-                {
-                    b.Navigation("descripcion");
-                });
+                            b.Navigation("cliente");
+                        });
 
-<<<<<<< Updated upstream
-            modelBuilder.Entity("FransfordSystem.Models.ReporteExamen", b =>
-                {
-                    b.Navigation("resultados");
-                });
+                            modelBuilder.Entity("FransfordSystem.Models.Resultado", b =>
+                        {
+                            b.HasOne("FransfordSystem.Models.Descripcion", "descripcion")
+                                .WithMany("resultados")
+                                .HasForeignKey("descripcionidDescripcion");
 
-=======
->>>>>>> Stashed changes
-            modelBuilder.Entity("FransfordSystem.Models.Unidad", b =>
-                {
-                    b.Navigation("descripcion");
-                });
+                            b.HasOne("FransfordSystem.Models.ReporteExamen", "reporteExamen")
+                                .WithMany("resultados")
+                                .HasForeignKey("reporteExamenIdReporteExamen");
 
-            modelBuilder.Entity("FransfordSystem.Models.Usuario", b =>
-                {
-                    b.Navigation("clientes");
-                });
+                            b.Navigation("descripcion");
+
+                            b.Navigation("reporteExamen");
+
+                            b.HasOne("FransfordSystem.Models.Cliente", null)
+                                .WithMany("reporteExamenes")
+                                .HasForeignKey("ClienteIdCliente");
+
+                        });
+
+                            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                        {
+                            b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                                .WithMany()
+                                .HasForeignKey("RoleId")
+                                .OnDelete(DeleteBehavior.Cascade)
+                                .IsRequired();
+                        });
+
+                            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                        {
+                            b.HasOne("FransfordSystem.Models.Usuario", null)
+                                .WithMany()
+                                .HasForeignKey("UserId")
+                                .OnDelete(DeleteBehavior.Cascade)
+                                .IsRequired();
+                        });
+
+                            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                        {
+                            b.HasOne("FransfordSystem.Models.Usuario", null)
+                                .WithMany()
+                                .HasForeignKey("UserId")
+                                .OnDelete(DeleteBehavior.Cascade)
+                                .IsRequired();
+                        });
+
+                            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                        {
+                            b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                                .WithMany()
+                                .HasForeignKey("RoleId")
+                                .OnDelete(DeleteBehavior.Cascade)
+                                .IsRequired();
+
+                            b.HasOne("FransfordSystem.Models.Usuario", null)
+                                .WithMany()
+                                .HasForeignKey("UserId")
+                                .OnDelete(DeleteBehavior.Cascade)
+                                .IsRequired();
+                        });
+
+                            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                        {
+                            b.HasOne("FransfordSystem.Models.Usuario", null)
+                                .WithMany()
+                                .HasForeignKey("UserId")
+                                .OnDelete(DeleteBehavior.Cascade)
+                                .IsRequired();
+                        });
+
+                            modelBuilder.Entity("FransfordSystem.Models.Categoria", b =>
+                        {
+                            b.Navigation("examen");
+                        });
+
+                            modelBuilder.Entity("FransfordSystem.Models.Cliente", b =>
+                        {
+
+                            b.Navigation("reporteExamenes");
+                        });
+
+                            modelBuilder.Entity("FransfordSystem.Models.Descripcion", b =>
+                        {
+                            b.Navigation("resultados");
+
+                            b.Navigation("cita");
+
+                            b.Navigation("reporteExamenes");
+
+                        });
+
+                            modelBuilder.Entity("FransfordSystem.Models.Examen", b =>
+                        {
+                            b.Navigation("descripcion");
+                        });
+
+
+                            modelBuilder.Entity("FransfordSystem.Models.ReporteExamen", b =>
+                        {
+                            b.Navigation("resultados");
+                        });
+
+
+                            modelBuilder.Entity("FransfordSystem.Models.Unidad", b =>
+                        {
+                            b.Navigation("descripcion");
+                        });
+
+                            modelBuilder.Entity("FransfordSystem.Models.Usuario", b =>
+                        {
+                            b.Navigation("clientes");
+                        });
 #pragma warning restore 612, 618
+                        });
+                });
         }
     }
 }
