@@ -50,11 +50,23 @@ namespace FransfordSystem.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                //Genera lista de clientes
+      
+            string valor1 = TempData["valorId"].ToString();
+
+            //Genera lista de clientes
                 List<Examen> examenesLista = new List<Examen>();
                 examenesLista = (from examen in _context.Examen select examen).ToList();
                 examenesLista.Insert(0, new Examen { idExamen = 0, nombreExamen = "Seleccionar" });
                 ViewBag.examenDeLista = examenesLista;
+                ViewBag.probando = valor1;
+
+
+                List<Descripcion> descripcionLista = new List<Descripcion>();
+                descripcionLista = (from descripcion in _context.Descripcion select descripcion).ToList();
+                descripcionLista.Insert(0, new Descripcion { idDescripcion = 0, descripcionExamen = "Seleccionar" });
+                ViewBag.descripcionDeLista = descripcionLista;
+
+
                 return View();
             }
             else

@@ -1,7 +1,9 @@
-﻿@model FransfordSystem.Models.Resultado
+﻿@using Newtonsoft.Json
+@model FransfordSystem.Models.Resultado
 
 @{
     ViewData["Title"] = "Create";
+    var descri = ViewBag.descripcionDeLista as List<SelectListItem>;
 }
 
 <h1>Create</h1>
@@ -14,24 +16,53 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>                      
             <div class="form-group">
                 <label asp-for="idReporteExamen" class="control-label"></label>
-                <input asp-for="idReporteExamen" class="form-control" />
+                <input asp-for="idReporteExamen" class="form-control" value="@ViewBag.probando"/>
                 <span asp-validation-for="idReporteExamen" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label>Seleccionar Examen</label>
-                <select  class="form-control" asp-items="@(new SelectList(@ViewBag.examenDeLista, "idExamen", "nombreExamen"))"></select>
+                <select onchange="examenSeleccionado()" class="form-control" id="selectExamen" asp-items="@(new SelectList(@ViewBag.examenDeLista, "idExamen", "nombreExamen"))"></select>
             </div>
 
+            <script>
+                function examenSeleccionado() {
+                    let selectExamenes = document.getElementById('selectExamen');
+                    let valueExamen = selectExamenes.value;
+                    const examenSeleccionado = valueExamen;
+                    console.log(examenSeleccionado);
+                    var list = [];
+                    var list = @Html.Raw(JsonConvert.SerializeObject(ViewBag.descripcionDeLista));
+                    
+                    const $select = document.querySelector("#filtro");    
+                    for (let i = $select.options.length; i >= 0; i--) {
+                        $select.remove(i);
+                    }
+
+                    for (var i = 0; i < list.length; i++) {
+                        while (list[i]['idExamen'] == examenSeleccionado) {
+                            const option = document.createElement('option');
+                            const valor = list[i]['descripcionExamen'];
+                            const ide = list[i]['idDescripcion']
+                            option.text = valor;
+                            option.value = ide;
+                            $select.appendChild(option);
+                            i++;
+
+                        }
+                    }  
+                }
+                
+            </script>
 
             <div class="form-group">
                 <label asp-for="idDescripcion" class="control-label"></label>
-                <input asp-for="idDescripcion" class="form-control" />
+                <select asp-for="idDescripcion" class="form-control" id="filtro"></select>
                 <span asp-validation-for="idDescripcion" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="resultadoExamen" class="control-label"></label>
-                <input asp-for="resultadoExamen" class="form-control" />
-                <span asp-validation-for="resultadoExamen" class="text-danger"></span>
+               <label asp-for="resultadoExamen" class="control-label"></label>
+               <input asp-for="resultadoExamen" class="form-control" />
+               <span asp-validation-for="resultadoExamen" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

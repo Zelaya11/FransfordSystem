@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FransfordSystem;
 using FransfordSystem.Models;
+using FransfordSystem.ViewModels;
 
 namespace FransfordSystem.Controllers
 {
@@ -55,14 +56,22 @@ namespace FransfordSystem.Controllers
                 clientesLista.Insert(0, new Cliente { IdCliente = 0, nombreCliente = "Seleccionar" });
                 ViewBag.clienteDeLista = clientesLista;
                 
-
+                
                 //Genera lista de examenes
 
                 List<Examen> examenesLista = new List<Examen>();
                 examenesLista = (from examen in _context.Examen select examen).ToList();
                 examenesLista.Insert(0, new Examen { idExamen = 0, nombreExamen = "Seleccionar" });
                 ViewBag.examenDeLista = examenesLista;
+
+                List<Descripcion> descripcionLista = new List<Descripcion>();
+                descripcionLista = (from descripcion in _context.Descripcion select descripcion).ToList();
+                descripcionLista.Insert(0, new Descripcion { idDescripcion = 0, descripcionExamen = "Seleccionar" });
+                ViewBag.descripcionDeLista = descripcionLista;
+                ViewData["descrip"] = descripcionLista;
+
                 return View();
+
             }
             else
             {
@@ -70,23 +79,32 @@ namespace FransfordSystem.Controllers
             }
         }
 
-      
+        
 
-        // POST: ReporteExamen/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+
+            // POST: ReporteExamen/Create
+            // To protect from overposting attacks, enable the specific properties you want to bind to.
+            // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+            [HttpPost]
         [ValidateAntiForgeryToken]
+
+
         public async Task<IActionResult> Create([Bind("IdReporteExamen,fechaReporte,idCliente")] ReporteExamen reporteExamen)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(reporteExamen);
                 await _context.SaveChangesAsync();
+
+
+                ReporteExamen model = new ReporteExamen();
+                model.IdReporteExamen = reporteExamen.IdReporteExamen;
+                TempData["valorId"] = reporteExamen.IdReporteExamen;
                 return Redirect("~/Resultadoes/Create");
             }
             return View(reporteExamen);
         }
+
 
         // GET: ReporteExamen/Edit/5
         public async Task<IActionResult> Edit(int? id)
