@@ -9,41 +9,41 @@
 <h4>Complete la siguiente información</h4>
 <hr />
 
-<div class="alert alert-light" role="alert" >
+<div class="alert alert-light" role="alert">
     <strong>
-                Indicaciones:
-                <br/>
-                <br/>
-                A)- Si la cita es para un cliente.
-                <br/>
-                <br/>
-                1- Seleccionar el nombre del cliente deseado, a partir de los nombres proporcionados por la lista desplegable de clientes.
-                <br/>
-                2- Seleccionar la fecha en que se realizará la cita, por medio del ícono del calendario.
-                <br/>
-                3- Escribir la hora en la cuál se realizará la cita. El formato debe ser hh:mm (24 horas).
-                <br/>
-                4- Presionar el botón "Crear" para registrar la cita.
-                 
-                <br/>
-                <br/>
-                B)- Si la cita es para una empresa.
-                <br/>
-                <br/>
-                1- Marcar el cuadro ubicado a un lado de la etiqueta "Empresa".
-                <br/>
-                2- Escribir el nombre de la empresa.
-                <br/>
-                3- Seleccionar la fecha en que se realizará la cita, por medio del ícono del calendario.
-                <br/>
-                4- Presionar el botón "Crear" para registrar la cita.
-                </strong>
-            </div>
+        Indicaciones:
+        <br />
+        <br />
+        A)- Si la cita es para un cliente.
+        <br />
+        <br />
+        1- Seleccionar el nombre del cliente deseado, a partir de los nombres proporcionados por la lista desplegable de clientes. Si el cliente no existe puede crearlo presionando el botón "Crear cliente".
+        <br />
+        2- Seleccionar la fecha en que se realizará la cita, por medio del ícono del calendario.
+        <br />
+        3- Escribir la hora en la cuál se realizará la cita. El formato debe ser hh:mm (24 horas).
+        <br />
+        4- Presionar el botón "Crear" para registrar la cita.
+
+        <br />
+        <br />
+        B)- Si la cita es para una empresa.
+        <br />
+        <br />
+        1- Marcar el cuadro ubicado a un lado de la etiqueta "Empresa".
+        <br />
+        2- Escribir el nombre de la empresa.
+        <br />
+        3- Seleccionar la fecha en que se realizará la cita, por medio del ícono del calendario.
+        <br />
+        4- Presionar el botón "Crear" para registrar la cita.
+    </strong>
+</div>
 
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>          
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group">
                 <div class="form-check">
@@ -55,8 +55,18 @@
             </div>
             <div class="form-group">
                 <label asp-for="idCliente" class="control-label"></label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="@Url.Action("Create", "Clientes")" class="btn btn-primary" role="button" aria-pressed="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+                    </svg>  Crear cliente
+                </a>
+            </div>
+          
+            <div class="form-group">
                 <select asp-for="idCliente" class="form-control" asp-items="@(new SelectList(@ViewBag.clienteDeLista, "IdCliente", "nombreCliente"))"></select>
             </div>
+
             <div class="form-group">
                 <label asp-for="nombreEmpresa" class="control-label"></label>
                 <input asp-for="nombreEmpresa" class="form-control" disabled="disabled" />

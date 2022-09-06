@@ -21,13 +21,24 @@
                     </label>
                 </div>
             </div>
+
             <div class="form-group">
                 <label asp-for="idCliente" class="control-label"></label>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="@Url.Action("Create", "Clientes")" class="btn btn-primary" role="button" aria-pressed="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
+                    </svg>  Crear cliente
+                </a>
+            </div>
+
+            <div class="form-group">
                 <select asp-for="idCliente" class="form-control" asp-items="@(new SelectList(@ViewBag.clienteDeLista, "IdCliente", "nombreCliente"))"></select>
             </div>
+
             <div class="form-group">
                 <label asp-for="nombreEmpresa" class="control-label"></label>
-                <input asp-for="nombreEmpresa" class="form-control" disabled="disabled"/>
+                <input asp-for="nombreEmpresa" class="form-control" disabled="disabled" />
                 <span asp-validation-for="nombreEmpresa" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -40,7 +51,7 @@
                 <input asp-for="horaCita" class="form-control" placeholder="Formato hh:mm (24 horas)" />
                 <span asp-validation-for="horaCita" class="text-danger"></span>
             </div>
-            
+
             <div class="form-group">
                 <input type="submit" value="Guardar" class="btn btn-success" />
             </div>
@@ -53,7 +64,9 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
     <script type="text/javascript">
         let opcion = document.getElementById("flexCheckDefault")
         let caja1 = document.getElementById("idCliente")
@@ -70,7 +83,7 @@
                 caja2.value = ""
             } else {
                 caja1.disabled = false
-                caja2.disabled = false 
+                caja2.disabled = false
                 caja3.disabled = true
                 caja3.value = ""
             }
