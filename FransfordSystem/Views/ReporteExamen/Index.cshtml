@@ -1,14 +1,15 @@
-﻿@model IEnumerable<FransfordSystem.Models.ReporteExamen>
+﻿@using Newtonsoft.Json
+@model IEnumerable<FransfordSystem.Models.ReporteExamen>
 @{
     ViewData["Title"] = "Index";
+    var nombreClie = ViewBag.clientesDeLista as List<SelectListItem>;
 }
-
+<body onload="proba()">
 <h1>Index</h1>
-
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<table class="table" >
     <thead>
         <tr>
             <th>
@@ -24,14 +25,12 @@
         
 @foreach (var item in Model) {
         <tr>
-            <td>
+            
+            <td > 
                 @Html.DisplayFor(modelItem => item.fechaReporte)
             </td>
-            <td>
-                
-                @Html.DisplayFor(modelItem => item.idCliente)
-                
-               
+            <td class="cliente">
+                @Html.DisplayFor(modelItem => item.idCliente)                            
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.IdReporteExamen">Edit</a> |
@@ -40,5 +39,28 @@
             </td>
         </tr>
 }
+
+    <script>
+        function proba() {
+             let td = document.getElementsByClassName("cliente");
+             var list = [];
+             var list = @Html.Raw(JsonConvert.SerializeObject(ViewBag.clienteDeLista));
+
+            for (let i = 0;i < td.length;i++){
+                for (let a = 1;a < list.length; a++) {
+                    if (td[i].innerHTML == list[a]['IdCliente']) {
+                        console.log('Primero', i);
+                        td[i].innerHTML = list[a]['nombreCliente'];
+                    }
+                     console.log('Segundo',a);
+                 }
+                 
+                 console.log('Tercero',i);
+             }
+             console.log(td);
+        }
+       
+    </script>
     </tbody>
 </table>
+</body>
