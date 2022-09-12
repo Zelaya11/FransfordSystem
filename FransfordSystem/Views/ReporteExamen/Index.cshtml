@@ -50,7 +50,7 @@
                 for (let a = 1;a < list.length; a++) {
                     if (td[i].innerHTML == list[a]['IdCliente']) {
                         console.log('Primero', i);
-                        td[i].innerHTML = list[a]['nombreCliente'];
+                        td[i].innerHTML = list[a]['nombreCliente'] + ' ' +list[a]['apellidoCliente'];
                     }
                      console.log('Segundo',a);
                  }

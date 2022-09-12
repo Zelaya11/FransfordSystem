@@ -48,6 +48,21 @@ namespace FransfordSystem.Controllers
             {
                 return NotFound();
             }
+            ViewBag.idRepo = id;
+            List<Resultado> resultadoLista = new List<Resultado>();
+            resultadoLista = (from resultado in _context.Resultado where resultado.idReporteExamen==id select resultado ).ToList();
+            ViewBag.resultadoDeLista = resultadoLista;
+
+            List<Descripcion> descripcionLista = new List<Descripcion>();
+            descripcionLista = (from descripcion in _context.Descripcion select descripcion).ToList();
+            ViewBag.descripcionDeLista = descripcionLista;
+
+            List<Examen> examenLista = new List<Examen>();
+            examenLista = (from examen in _context.Examen select examen).ToList();
+            ViewBag.examenDeLista = examenLista;
+            
+            var clienteLista = (from cliente in _context.Cliente where cliente.IdCliente == reporteExamen.idCliente select cliente).First();
+            ViewBag.nombreDeLista =clienteLista.nombreCliente+ " "+  clienteLista.apellidoCliente;
 
             return View(reporteExamen);
         }
@@ -191,9 +206,12 @@ namespace FransfordSystem.Controllers
                 return Problem("Entity set 'FransforDbContext.ReporteExamen'  is null.");
             }
             var reporteExamen = await _context.ReporteExamen.FindAsync(id);
+            var resultadoExamen = await _context.Resultado.Where(res => res.idReporteExamen == id).ToListAsync();
             if (reporteExamen != null)
             {
                 _context.ReporteExamen.Remove(reporteExamen);
+                _context.Resultado.RemoveRange(resultadoExamen);
+
             }
             
             await _context.SaveChangesAsync();

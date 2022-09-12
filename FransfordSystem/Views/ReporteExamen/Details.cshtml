@@ -1,9 +1,11 @@
-﻿@model FransfordSystem.Models.ReporteExamen
+﻿@using Newtonsoft.Json
+@model FransfordSystem.Models.ReporteExamen
 
 @{
     ViewData["Title"] = "Details";
+    var idDe = ViewBag.idRepo;
 }
-
+<body onload="nombres()">
 <h1>Details</h1>
 
 <div>
@@ -19,12 +21,98 @@
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.idCliente)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.idCliente)
+        <dd class = "col-sm-10" id="nombreC">
+            @ViewBag.nombreDeLista
         </dd>
     </dl>
+
+    <table class="table">
+    <thead>
+        <tr>
+            <th>
+                Examen
+            </th>
+            <th>
+                Descripcion
+            </th>
+            <th>
+                Resultado
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            var listaRes = ViewBag.resultadoDeLista as IEnumerable<FransfordSystem.Models.Resultado>; 
+            foreach (var item in listaRes) {
+                        <tr>
+                            
+                            <td class="examen" > 
+                                @item.idDescripcion
+                            </td>
+                            <td class="descripcion" >
+                                  @item.idDescripcion                    
+                            </td>
+                            <td >
+                                  @item.resultadoExamen                    
+                            </td>                  
+                        </tr>
+            }        
+        }
+
+
+    </tbody>
+    </table>
+
+
+
+    <script>
+       function nombres(){ 
+        var list2 = [];
+        var list3 = [];
+        var list2 = @Html.Raw(JsonConvert.SerializeObject(ViewBag.examenDeLista));
+        var list3 = @Html.Raw(JsonConvert.SerializeObject(ViewBag.descripcionDeLista));
+        let td = document.getElementsByClassName("descripcion");
+        let td2 = document.getElementsByClassName("examen");
+
+        for (let i = 0;i < td.length;i++){
+                for (let a = 0;a < list3.length; a++) {
+                    if (td[i].innerHTML == list3[a]['idDescripcion']) {
+                        td[i].innerHTML = list3[a]['descripcionExamen'];
+                    }
+                 }
+                 
+             }
+
+             for (let i = 0;i < td2.length;i++){
+                for (let a = 0;a < list3.length; a++) {
+                    if (td2[i].innerHTML == list3[a]['idDescripcion']) {
+                        td2[i].innerHTML = list3[a]['idExamen'];
+                    }
+                 }
+                 
+             }
+
+             for (let i = 0;i < td2.length;i++){
+                for (let a = 0;a < list2.length; a++) {
+                    if (td2[i].innerHTML == list2[a]['idExamen']) {
+                        td2[i].innerHTML = list2[a]['nombreExamen'];
+                    }
+                 }
+                 
+             }
+
+             
+
+ 
+       }
+
+
+    </script>
+
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.IdReporteExamen">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>
+</body>
