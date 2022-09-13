@@ -1,0 +1,60 @@
+﻿@model FransfordSystem.Models.Asistencia
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Marcar hora de entrada</h1>
+
+<h4>Marcar la hora entrada al trabajo una vez por día</h4>
+<hr />
+<h6>Presionar el botón "Comprobar hora actual" para asignar la hora de asistencia del trabajador</h6>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="idUsuario" class="control-label"></label>
+                <select asp-for="idUsuario" class="form-control" asp-items="@(new SelectList(@ViewBag.usuarioDeLista, "Id", "nombreTrabajador"))"></select>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="horaEntrada" class="control-label"></label>
+                <input asp-for="horaEntrada" type="datetime-local" v-model="inicio" id="dateInput" class="form-control" readonly="readonly"/>   
+                <span asp-validation-for="horaEntrada" class="text-danger"></span>
+            </div>
+
+            <button type="button" class="btn btn-warning" id="buton" onclick="marcarAsistencia()">Comprobar hora actual</button>
+
+            <script>
+                function marcarAsistencia(){
+                    var fecha = new Date(); //Fecha actual
+                    var mes = fecha.getMonth()+1; //obteniendo mes
+                    var dia = fecha.getDate(); //obteniendo dia
+                    var ano = fecha.getFullYear(); //obteniendo año
+                    var hora = fecha.getHours(); //obteniendo hora
+                    var minutos = fecha.getMinutes(); //obteniendo minuto
+                    var marcar = document.getElementById("dateInput").value = ano+"-"+minTwoDigits(mes)+"-"+minTwoDigits(dia)+"T"+minTwoDigits(hora)+":"+minTwoDigits(minutos);
+                    console.log(marcar);
+                }
+
+                function minTwoDigits(n) {
+                    return (n < 10 ? '0' : '') + n;
+                }
+            </script>
+
+            <div class="form-group">
+                <label asp-for="horaSalida" class="control-label"></label>
+                <input asp-for="horaSalida" class="form-control" disabled />
+                <span asp-validation-for="horaSalida" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Marcar hora de entrada" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

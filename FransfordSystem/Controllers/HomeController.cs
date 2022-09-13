@@ -106,6 +106,11 @@ namespace FransfordSystem.Controllers
             return RedirectToAction("Index", "Usuario");
         }
 
+        public ActionResult MarcarA()
+        {
+            return RedirectToAction("MarcarA", "Asistencias");
+        }
+
         public ActionResult IndexCita()
         {
             return RedirectToAction("Index", "Citas");

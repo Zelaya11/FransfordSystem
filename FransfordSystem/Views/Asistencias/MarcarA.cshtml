@@ -1,0 +1,42 @@
+﻿@model IEnumerable<FransfordSystem.Models.Asistencia>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Marcación de asistencia de los trabajadores</h1>
+
+<p>
+    <a href="@Url.Action("Create", "Asistencias")" class="btn btn-success" role="button" aria-pressed="true">Marcar hora de entrada</a>
+</p>
+
+<table class="table table-hover">
+    <thead>
+        <tr align="center">
+            <th>
+                @Html.DisplayNameFor(model => model.idUsuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.horaEntrada)
+            </th>
+            <th>
+                <a>Marcar hora de salida</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr align="center">
+            <td>
+                @Html.DisplayFor(modelItem => item.idUsuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.horaEntrada)
+            </td>
+            <td align="center">
+                <a asp-action="Salida" asp-route-id="@item.idAsistencia" class="btn btn-danger" role="button" aria-pressed="true">Marcar hora de salida</a> 
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

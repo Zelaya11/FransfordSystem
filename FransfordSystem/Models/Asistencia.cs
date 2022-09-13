@@ -9,11 +9,11 @@ namespace FransfordSystem.Models
         [Display(Name = "idAsistencia")]
         [Required(ErrorMessage = "Este campo es obligatorio")]
         [Key]
-        public int IdAsistencia { get; set; }
+        public int idAsistencia { get; set; }
 
-        [Display(Name = "idUsuario")]
+        [Display(Name = "Nombre del trabajador")]
         [Required(ErrorMessage = "Este campo es obligatorio")]
-        public int idUsuario { get; set; }
+        public string idUsuario { get; set; }
         public Usuario? usuario { get; set; }
 
         //Hora de entrada
