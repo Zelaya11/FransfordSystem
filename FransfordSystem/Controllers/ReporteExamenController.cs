@@ -34,6 +34,34 @@ namespace FransfordSystem.Controllers
                           Problem("Entity set 'FransforDbContext.ReporteExamen'  is null.");
         }
 
+
+        public async Task<IActionResult> Filtro(int? id)
+        {
+            List<Cliente> clientesLista = new List<Cliente>();
+            clientesLista = (from cliente in _context.Cliente select cliente).ToList();
+            ViewBag.clienteDeLista = clientesLista;
+
+
+            if (id == null || _context.ReporteExamen == null)
+            {
+                return NotFound();
+            }
+
+            var reporte = await _context.ReporteExamen
+                .FirstOrDefaultAsync(m => m.idCliente == id);
+            ViewBag.ReporteFiltrado = await _context.ReporteExamen.Where(o => o.idCliente == id).ToListAsync();
+            if (reporte == null)
+            {
+                return Redirect("/Descripciones/Nodescripcion");
+            }
+
+            return View(reporte);
+
+        }
+
+
+
+
         // GET: ReporteExamen/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -57,12 +85,42 @@ namespace FransfordSystem.Controllers
             descripcionLista = (from descripcion in _context.Descripcion select descripcion).ToList();
             ViewBag.descripcionDeLista = descripcionLista;
 
+            List<Unidad> unidadLista = new List<Unidad>();
+            unidadLista = (from unidad in _context.Unidad select unidad).ToList();
+            ViewBag.unidadDeLista = unidadLista;
+
             List<Examen> examenLista = new List<Examen>();
             examenLista = (from examen in _context.Examen select examen).ToList();
             ViewBag.examenDeLista = examenLista;
-            
+
+            List<Categoria> categoriaLista = new List<Categoria>();
+            categoriaLista = (from categoria in _context.Categoria select categoria).ToList();
+            ViewBag.categoriaDeLista = categoriaLista;
+
             var clienteLista = (from cliente in _context.Cliente where cliente.IdCliente == reporteExamen.idCliente select cliente).First();
             ViewBag.nombreDeLista =clienteLista.nombreCliente+ " "+  clienteLista.apellidoCliente;
+
+
+
+            DateTime fechaNacimiento = clienteLista.fechaNacimiento;
+
+            DateTime now = reporteExamen.fechaReporte;
+            int edad = now.Year - fechaNacimiento.Year;
+
+            if (now < fechaNacimiento.AddYears(edad))
+                --edad;
+            else
+                 edad=edad;
+
+            ViewBag.edadCliente = edad;
+
+
+
+
+
+
+
+
 
             return View(reporteExamen);
         }

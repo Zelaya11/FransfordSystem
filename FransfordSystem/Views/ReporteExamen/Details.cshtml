@@ -6,12 +6,21 @@
     var idDe = ViewBag.idRepo;
 }
 <body onload="nombres()">
-<h1>Details</h1>
+    <p> 
+    <img src="~/dist/img/AdminLTELogo.png" align="left"><h1 align="center">LABORATORIO CLINICO FRANSFORD</h1>
+    <h5 align="center">CALLE MORAZAN N.13 LOCAL A 2DA.PLANTA 25 METROS AL ORIENTE DE ALCALDIA DE CIUDAD DELGADO TEL.2286-8915 </h5>
+    <h5 align="center">REGISTRO C.S.S.P.  N°  973, LIC.EDWIN GUEVARA ROMERO  J.V.P.L.C. N° 1287 </h5>
+</p>
 
 <div>
-    <h4>ReporteExamen</h4>
     <hr />
     <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.idCliente)
+        </dt>
+        <dd class = "col-sm-10" id="nombreC">
+            @ViewBag.nombreDeLista
+        </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.fechaReporte)
         </dt>
@@ -19,24 +28,32 @@
             @Html.DisplayFor(model => model.fechaReporte)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.idCliente)
+            Edad
         </dt>
-        <dd class = "col-sm-10" id="nombreC">
-            @ViewBag.nombreDeLista
+        <dd class = "col-sm-10">
+            @ViewBag.edadCliente años
         </dd>
     </dl>
+
+    <h2 id="nomCat" align="center" ></h2>
 
     <table class="table">
     <thead>
         <tr>
-            <th>
+            <th align="center">
                 Examen
             </th>
-            <th>
+            <th align="center">
                 Descripcion
             </th>
-            <th>
+            <th align="center">
                 Resultado
+            </th>
+             <th align="center">
+                
+            </th>
+            <th text-align="center">
+                Rango de Referencia
             </th>
             <th></th>
         </tr>
@@ -45,18 +62,13 @@
         @{
             var listaRes = ViewBag.resultadoDeLista as IEnumerable<FransfordSystem.Models.Resultado>; 
             foreach (var item in listaRes) {
-                        <tr>
-                            
-                            <td class="examen" > 
-                                @item.idDescripcion
-                            </td>
-                            <td class="descripcion" >
-                                  @item.idDescripcion                    
-                            </td>
-                            <td >
-                                  @item.resultadoExamen                    
-                            </td>                  
-                        </tr>
+                                                                                                        <tr>
+                                                                                                        <td class="examen" > @item.idDescripcion</td>
+                                                                                                        <td class="descripcion" >@item.idDescripcion</td>
+                                                                                                        <td class="resul" align="center">@item.resultadoExamen</td>
+                                                                                                        <td  align="left" class="unidad" >@item.idDescripcion</td>
+                                                                                                        <td class="valoresM" align="center"> @item.idDescripcion</td>
+                                                                                                        </tr>
             }        
         }
 
@@ -68,22 +80,31 @@
 
     <script>
        function nombres(){ 
-        var list2 = [];
-        var list3 = [];
-        var list2 = @Html.Raw(JsonConvert.SerializeObject(ViewBag.examenDeLista));
-        var list3 = @Html.Raw(JsonConvert.SerializeObject(ViewBag.descripcionDeLista));
-        let td = document.getElementsByClassName("descripcion");
-        let td2 = document.getElementsByClassName("examen");
+            var list2 = [];
+            var list3 = [];
+            var list4 = [];
+            var list5 = [];
+            
+            var list2 = @Html.Raw(JsonConvert.SerializeObject(ViewBag.examenDeLista));
+            var list3 = @Html.Raw(JsonConvert.SerializeObject(ViewBag.descripcionDeLista));
+            var list4 = @Html.Raw(JsonConvert.SerializeObject(ViewBag.unidadDeLista));
+            var list5 = @Html.Raw(JsonConvert.SerializeObject(ViewBag.categoriaDeLista));
+            let td = document.getElementsByClassName("descripcion");
+            let td2 = document.getElementsByClassName("examen");
+            let td3 = document.getElementsByClassName("unidad");
+            let td4 = document.getElementsByClassName("valoresM");
+            let nombreCategoria = document.getElementById("nomCat");
+            
 
-        for (let i = 0;i < td.length;i++){
+
+            
+            for (let i = 0;i < td.length;i++){
                 for (let a = 0;a < list3.length; a++) {
                     if (td[i].innerHTML == list3[a]['idDescripcion']) {
                         td[i].innerHTML = list3[a]['descripcionExamen'];
                     }
                  }
-                 
-             }
-
+            }
              for (let i = 0;i < td2.length;i++){
                 for (let a = 0;a < list3.length; a++) {
                     if (td2[i].innerHTML == list3[a]['idDescripcion']) {
@@ -92,20 +113,78 @@
                  }
                  
              }
-
              for (let i = 0;i < td2.length;i++){
                 for (let a = 0;a < list2.length; a++) {
                     if (td2[i].innerHTML == list2[a]['idExamen']) {
                         td2[i].innerHTML = list2[a]['nombreExamen'];
                     }
                  }
+              nomCat.innerHTML = td2[0].innerHTML;   
+             }
+             for (let i = 0;i < td2.length;i++){
+                for (let a = 0;a < list3.length; a++) {
+                    console.log(1);
+                    if (td3[i].innerHTML == list3[a]['idDescripcion']) {
+                        td3[i].innerHTML = list3[a]['idUnidad'];
+                    }
+                 }
                  
              }
-
+             for (let i = 0;i < td3.length;i++){
+                for (let a = 0;a < list4.length; a++) {
+                    if (td3[i].innerHTML == list4[a]['idUnidad']) {
+                        if (list4[a]['nombreUnidad'] == 0) {
+                            td3[i].innerHTML = " ";
+                        }
+                        else {
+                            td3[i].innerHTML = list4[a]['nombreUnidad'];
+                        }
+                    } 
+                    if (td3[i].innerHTML == 0) {
+                        td3[i].innerHTML = " ";
+                    }
+                 }                
+             }
+             for (let i = 0;i < td4.length;i++){
+                for (let a = 0;a < list3.length; a++) {
+                    if (td4[i].innerHTML == list3[a]['idDescripcion']) {
+                        td4[i].innerHTML = list3[a]['valorMinimo'] + " - " + list3[a]['valorMaximo'];
+                    }
+                    if (td4[i].innerHTML == "null - null") {
+                          td4[i].innerHTML = " "
+                    }
+                 }
+                 
+             }
+             for (let i = 0;i < 1;i++){
+                for (let a = 0;a < list2.length; a++) {
+                    if (nomCat.innerHTML == list2[a]['nombreExamen']) {
+                        nomCat.innerHTML = list2[a]['idCategoria'];
+                    }
+                 }                
+             }
+             for (let i = 0;i < 1;i++){
+                for (let a = 0;a < list5.length; a++) {                                          
+                    if (nomCat.innerHTML == list5[a]['IdCategoria']) {
+                        nomCat.innerHTML = list5[a]['nombreCategoria'];
+                    }
+                 }
+                 
+             } 
+             
+             //Validar si esta en los rangos de referencia
+             let tdResultado = document.getElementsByClassName("resul");
              
 
- 
+
+           }
+           
+         
        }
+       
+
+       
+
 
 
     </script>
