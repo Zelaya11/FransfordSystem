@@ -26,13 +26,29 @@ namespace FransfordSystem.Controllers
             return _context.Asistencia != null ?
                         View(await _context.Asistencia.ToListAsync()) :
                         Problem("Entity set 'FransforDbContext.Asistencia'  is null.");
+
+           
+
+
         }
 
         public async Task<IActionResult> MarcarA()
         {
+            List<Usuario> usuarioLista = new List<Usuario>();
+            usuarioLista = (from usuario in _context.Usuario select usuario).ToList();
+            ViewBag.usuarioDeLista = usuarioLista;
+
+
+
+
             return _context.Asistencia != null ?
                         View(await _context.Asistencia.ToListAsync()) :
                         Problem("Entity set 'FransforDbContext.Asistencia'  is null.");
+
+          
+
+
+
         }
 
         // GET: Asistencias/Details/5

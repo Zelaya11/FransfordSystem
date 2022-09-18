@@ -6,6 +6,10 @@
     var idDe = ViewBag.idRepo;
 }
 <body onload="nombres()">
+    <div align="right">
+    <a id="printPDF" onclick="pdf()" class="btn btn-primary">Imprimir</a>
+    </div>
+    <div id="repor">
     <p> 
     <img src="~/dist/img/AdminLTELogo.png" align="left"><h1 align="center">LABORATORIO CLINICO FRANSFORD</h1>
     <h5 align="center">CALLE MORAZAN N.13 LOCAL A 2DA.PLANTA 25 METROS AL ORIENTE DE ALCALDIA DE CIUDAD DELGADO TEL.2286-8915 </h5>
@@ -62,13 +66,13 @@
         @{
             var listaRes = ViewBag.resultadoDeLista as IEnumerable<FransfordSystem.Models.Resultado>; 
             foreach (var item in listaRes) {
-                                                                                                        <tr>
-                                                                                                        <td class="examen" > @item.idDescripcion</td>
-                                                                                                        <td class="descripcion" >@item.idDescripcion</td>
-                                                                                                        <td class="resul" align="center">@item.resultadoExamen</td>
-                                                                                                        <td  align="left" class="unidad" >@item.idDescripcion</td>
-                                                                                                        <td class="valoresM" align="center"> @item.idDescripcion</td>
-                                                                                                        </tr>
+                                                                                                            <tr>
+                                                                                                            <td class="examen" > @item.idDescripcion</td>
+                                                                                                            <td class="descripcion" >@item.idDescripcion</td>
+                                                                                                            <td class="resul" align="center">@item.resultadoExamen</td>
+                                                                                                            <td  align="left" class="unidad" >@item.idDescripcion</td>
+                                                                                                            <td class="valoresM" align="center"> @item.idDescripcion</td>
+                                                                                                            </tr>
             }        
         }
 
@@ -172,17 +176,21 @@
                  
              } 
              
-             //Validar si esta en los rangos de referencia
-             let tdResultado = document.getElementsByClassName("resul");
              
-
-
-           }
            
          
        }
        
-
+            function pdf(){
+            var element = document.getElementById('repor');
+            var nombre= document.getElementById('nombreC');
+            
+            html2pdf().from(element).set({
+            margin: [30,10,5,10],
+            pagebreak:{ avoid: 'tr'},
+            jsPDF:{ orientation: 'landscape', unit:'pt', format: 'letter', compressPDF: true}
+            }).save('Reporte'+ nombre.innerHTML)
+            }
        
 
 
@@ -190,8 +198,11 @@
     </script>
 
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.IdReporteExamen">Edit</a> |
-    <a asp-action="Index">Back to List</a>
 </div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.IdReporteExamen">Editar Fecha de Reporte</a> |
+    <a asp-action="Index">Volver a Reportes</a>
+</div>
+
 </body>
+<script src="~/js/html2pdf.bundle.min.js"></script>

@@ -251,6 +251,11 @@ namespace FransfordSystem.Controllers
                 return NotFound();
             }
 
+            var clienteLista = (from cliente in _context.Cliente where cliente.IdCliente == reporteExamen.idCliente select cliente).First();
+            ViewBag.nombreDeLista = clienteLista.nombreCliente + " " + clienteLista.apellidoCliente;
+
+
+
             return View(reporteExamen);
         }
 

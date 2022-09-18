@@ -1,9 +1,10 @@
-﻿@model IEnumerable<FransfordSystem.Models.Asistencia>
+﻿@using Newtonsoft.Json
+@model IEnumerable<FransfordSystem.Models.Asistencia>
 
 @{
     ViewData["Title"] = "Index";
 }
-
+<body onload="nombre()">
 <h1>Marcación de asistencia de los trabajadores</h1>
 
 <p>
@@ -27,7 +28,7 @@
     <tbody>
 @foreach (var item in Model) {
         <tr align="center">
-            <td>
+            <td class="cliente">
                 @Html.DisplayFor(modelItem => item.idUsuario)
             </td>
             <td>
@@ -40,3 +41,29 @@
 }
     </tbody>
 </table>
+
+        <script>
+            function nombre() {
+                var list2 = [];
+                var list2 = @Html.Raw(JsonConvert.SerializeObject(ViewBag.usuarioDeLista));
+                let td = document.getElementsByClassName("cliente");
+
+
+                for (let i = 0;i < td.length;i++){
+                    for (let a = 0;a < list2.length; a++) {
+                        if (td[i].innerHTML.trim() == list2[a]['Id']) {
+                            console.log(list2[a]['Id']);
+                        td[i].innerHTML = list2[a]['nombreTrabajador']+ " " + list2[a]['apellidoTrabajador'];
+                        }
+                    }
+                }
+       
+
+            }
+
+
+        </script>
+
+
+
+</body>

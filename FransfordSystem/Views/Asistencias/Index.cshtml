@@ -1,10 +1,13 @@
-﻿@model IEnumerable<FransfordSystem.Models.Asistencia>
+﻿@using Newtonsoft.Json
+@model IEnumerable<FransfordSystem.Models.Asistencia>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+
+
+<h1>Asistencia</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -27,7 +30,7 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
+            <td id="idA">
                 @Html.DisplayFor(modelItem => item.idUsuario)
             </td>
             <td>
@@ -44,4 +47,8 @@
         </tr>
 }
     </tbody>
+
+
+
+    
 </table>
