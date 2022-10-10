@@ -9,15 +9,19 @@
 <div>
     <h4>Consulta de la información completa de la cita</h4>
     <hr />
- 
+
     <table style="width:auto; height:20px" class="table table-condensed table-bordered table-hover">
-       <tr>
+        <tr>
             <th>
                 @Html.DisplayNameFor(model => model.idCliente)
             </th>
+
             <th>
-                @Html.DisplayFor(model => model.idCliente)
+                <select asp-for="idCliente" disabled="disabled" class="form-control" asp-items="@(new SelectList(@ViewBag.clienteDeLista, "IdCliente", "nombreCliente"))"></select> 
+                
             </th>
+
+
         </tr>
         <tr>
             <th>
@@ -45,7 +49,7 @@
         </tr>
 
     </table>
- }
+    }
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.idCita">Editar</a> |

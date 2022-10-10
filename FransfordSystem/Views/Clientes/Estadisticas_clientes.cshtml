@@ -1,0 +1,59 @@
+﻿@model IEnumerable<FransfordSystem.Models.Cliente>
+@using System.Linq;
+
+<h1>Estadísticas de clientes</h1>
+
+<div>
+
+    <hr />
+    <h5>Clientes registrados en total: @ViewBag.Clientes.Count</h5>
+    <hr />
+
+    <table class="table table-hover">
+        <thead>
+            <tr align="center">
+                <th>
+                    @Html.DisplayNameFor(model => model.dui)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.nombreCliente)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.apellidoCliente)
+                </th>
+                <th>
+                    <a>Exámenes realizados</a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr align="center">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dui)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nombreCliente)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.apellidoCliente)
+                    </td>
+                    <td align="center">
+                        @{
+                            int min = 1;
+                            int max = 10;
+
+                            Random rnd = new Random();
+                                <h5>@rnd.Next(min, max + 1)</h5>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+<div>
+    <a asp-action="Index">Regresar a la lista de clientes</a>
+</div>

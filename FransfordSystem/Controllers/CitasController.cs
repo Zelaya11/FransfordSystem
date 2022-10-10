@@ -38,17 +38,22 @@ namespace FransfordSystem.Controllers
             var cita = await _context.Cita
                 .FirstOrDefaultAsync(m => m.idCita == id);
 
-            ViewBag.Clientes = await _context.Cliente.Where(o => o.IdCliente == id).ToListAsync();
-            //Genera lista de clientes
-            List<Cliente> clienteLista = new List<Cliente>();
-            clienteLista = (from cliente in _context.Cliente select cliente).ToList();
-            clienteLista.Insert(0, new Cliente { IdCliente = 0, nombreCliente = "Seleccionar" });
-            ViewBag.clienteDeLista = clienteLista;
+            /*
+            Cita c = new Cita();
+            string valor = c.idCliente;
+            ViewBag.Clientes = await _context.Cliente.Where(o => Convert.ToString(o.IdCliente) == valor).ToListAsync();
+            */   
 
             if (cita == null)
             {
                 return NotFound();
             }
+           
+            //Genera lista de clientes
+            List<Cliente> clienteLista = new List<Cliente>();
+            clienteLista = (from cliente in _context.Cliente select cliente).ToList();
+            clienteLista.Insert(0, new Cliente { IdCliente = 0, nombreCliente = "-" });
+            ViewBag.clienteDeLista = clienteLista;
 
             return View(cita);
         }

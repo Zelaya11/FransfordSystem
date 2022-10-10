@@ -47,6 +47,12 @@ namespace FransfordSystem.Controllers
                 var examen = await _context.Examen
                     .FirstOrDefaultAsync(m => m.idExamen == id);
 
+                /*
+                Examen e;
+                string valor = Convert.ToString(e.nombreExamen);
+                ViewBag.Categorias = await _context.Categoria.Where(c => c.IdCategoria == id).ToListAsync();
+                */
+
                 ViewBag.Descripciones = await _context.Descripcion.Where(o => o.idExamen == id).ToListAsync();
 
 
@@ -212,6 +218,26 @@ namespace FransfordSystem.Controllers
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        // Estadísticas de exámenes realizados
+        public async Task<IActionResult> Estadisticas_examenes()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewBag.Resultado = await _context.Resultado.Where(r => r.resultadoExamen != null).ToListAsync();
+
+                ViewBag.Examenes = await _context.Examen.ToListAsync();
+
+                List<Examen> examenes = new List<Examen>();
+                examenes = ViewBag.Examenes;
+
+                return _context.Examen != null ?
+                        View(await _context.Examen.ToListAsync()) :
+                        Problem("Entity set 'FransforDbContext.Examen'  is null.");
+            }
+            return Redirect("Identity/Account/Login");
+
         }
 
         private bool ExamenExists(int id)

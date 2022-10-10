@@ -170,6 +170,30 @@ namespace FransfordSystem.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        // Estadísticas de clientes
+        public async Task<IActionResult> Estadisticas_clientes()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                ViewBag.Clientes = await _context.Cliente.ToListAsync();
+
+                /*
+                var Resultado = _context.Resultado;
+                var cliente = _context.Cliente;
+                ViewBag.Resultado = await _context.Resultado.Where(o => o. == id).ToListAsync();
+                ViewBag.ReporteExamen = await _context.ReporteExamen.Where(o => o. == id).ToListAsync();
+                ViewBag.ReporteExamen = await _context.ReporteExamen.Where(o => o.idCliente == cliente.).ToListAsync();
+                */
+
+
+                return _context.Cliente != null ?
+                              View(await _context.Cliente.ToListAsync()) :
+                              Problem("Entity set 'FransforDbContext.Cliente'  is null.");
+            }
+            return Redirect("Identity/Account/Login");
+
+        }
+
         private bool ClienteExists(int id)
         {
           return (_context.Cliente?.Any(e => e.IdCliente == id)).GetValueOrDefault();
