@@ -177,6 +177,12 @@ namespace FransfordSystem.Controllers
             {
                 ViewBag.Clientes = await _context.Cliente.ToListAsync();
 
+                ViewBag.Cliente = await _context.Cliente.Where(c => c.IdCliente != 0).ToListAsync();
+                ViewBag.Reportes = await _context.ReporteExamen.Where(rp => rp.IdReporteExamen != 0).ToListAsync();
+                ViewBag.Resultados = await _context.Resultado.Where(re => re.IdResultado != 0).ToListAsync();
+                ViewBag.Descripcion = await _context.Descripcion.Where(d => d.idDescripcion != 0).ToListAsync();
+                ViewBag.Examenes = await _context.Examen.Where(e => e.idExamen != 0).ToListAsync();
+
                 /*
                 var Resultado = _context.Resultado;
                 var cliente = _context.Cliente;

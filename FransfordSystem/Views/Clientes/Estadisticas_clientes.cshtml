@@ -22,6 +22,9 @@
                     @Html.DisplayNameFor(model => model.apellidoCliente)
                 </th>
                 <th>
+                    <a>Número de reportes</a>
+                </th>
+                <th>
                     <a>Exámenes realizados</a>
                 </th>
             </tr>
@@ -41,11 +44,35 @@
                     </td>
                     <td align="center">
                         @{
-                            int min = 1;
-                            int max = 10;
+                            int acum1 = 0;
+                            foreach (ReporteExamen reporte in ViewBag.Reportes)
+                            {             
+                                    if (item.IdCliente == reporte.idCliente)
+                                    {
+                                      acum1 = acum1 + 1; 
+                                    }                               
+                            }
+                            <h5>@acum1</h5>
+                        }
+                    </td>
+                    <td align="center">
+                        @{
+                            int acum2 = 0;
+                            foreach (ReporteExamen reporte in ViewBag.Reportes)
+                            {
+                                foreach (Resultado resultado in ViewBag.Resultados)
+                                {
+                                    if (item.IdCliente == reporte.idCliente)
+                                    {
+                                        if (resultado.idReporteExamen == reporte.IdReporteExamen)
+                                        {                          
+                                            acum2 = acum2 + 1;                                           
+                                        }
+                                    }
 
-                            Random rnd = new Random();
-                                <h5>@rnd.Next(min, max + 1)</h5>
+                                }
+                            }
+                            <h5>@acum2</h5>
                         }
                     </td>
                 </tr>

@@ -17,7 +17,7 @@
                 </th>
                 <th>
                     <a>Cantidad de veces que se ha realizado</a>
-                </th>               
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -26,14 +26,26 @@
                 <tr align="center">
                     <td>
                         @Html.DisplayFor(modelItem => item.nombreExamen)
-                    </td>                                 
+                    </td>
+
                     <td align="center">
                         @{
-                            int min = 1;
-                            int max = 10;
+                            int acum = 0;
+                            foreach (Descripcion descripcion in ViewBag.Descripcion)
+                            {
+                                foreach (Resultado resultado in ViewBag.Resultados)
+                                {
+                                    if (resultado.idDescripcion == descripcion.idDescripcion)
+                                    {
+                                        if (descripcion.idExamen == item.idExamen)
+                                        {
+                                            acum = acum + 1;
+                                        }
 
-                            Random rnd = new Random();
-                                <h5>@rnd.Next(min, max + 1)</h5>
+                                    }
+                                }
+                            }
+                            <h5>@acum</h5>
                         }
                     </td>
                 </tr>

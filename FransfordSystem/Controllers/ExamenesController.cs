@@ -227,10 +227,11 @@ namespace FransfordSystem.Controllers
             {
                 ViewBag.Resultado = await _context.Resultado.Where(r => r.resultadoExamen != null).ToListAsync();
 
-                ViewBag.Examenes = await _context.Examen.ToListAsync();
-
-                List<Examen> examenes = new List<Examen>();
-                examenes = ViewBag.Examenes;
+                ViewBag.Clientes = await _context.Cliente.Where(c => c.IdCliente != 0).ToListAsync();
+                ViewBag.Reportes = await _context.ReporteExamen.Where(rp => rp.IdReporteExamen != 0).ToListAsync();
+                ViewBag.Resultados = await _context.Resultado.Where(re => re.IdResultado != 0).ToListAsync();
+                ViewBag.Descripcion = await _context.Descripcion.Where(d => d.idDescripcion != 0).ToListAsync();
+                ViewBag.Examenes = await _context.Examen.Where(e => e.idExamen != 0).ToListAsync(); 
 
                 return _context.Examen != null ?
                         View(await _context.Examen.ToListAsync()) :
