@@ -1,0 +1,75 @@
+﻿@model FransfordSystem.Models.Inventario
+@using Newtonsoft.Json
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<body onload="nombre()">
+<h1>Editar datos del inventario</h1>
+
+<h4>Inventario</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="idInventario" />
+            <div class="form-group">
+                <div class="producto">
+                <label asp-for="idProducto" class="control-label"></label>
+                <input asp-for="idProducto" class="form-control" readonly="readonly" />
+                <span asp-validation-for="idProducto" class="text-danger"></span>
+                 </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="fechaVencimiento" class="control-label"></label>
+                <input asp-for="fechaVencimiento" class="form-control" />
+                <span asp-validation-for="fechaVencimiento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="stock" class="control-label"></label>
+                <input asp-for="stock" class="form-control" />
+                <span asp-validation-for="stock" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Regresar a la lista de inventario</a>
+</div>
+
+    <script>
+        function nombre() {
+            var list2 = [];
+            var list2 = @Html.Raw(JsonConvert.SerializeObject(ViewBag.productoDeLista));
+            let td = document.getElementsByClassName("producto");
+
+
+            for (let i = 0; i < td.length; i++) {
+                for (let a = 0; a < list2.length; a++) {
+                    if (td[i].innerHTML.trim() == list2[a]['IdProducto']) {
+                        console.log(list2[a]['IdProducto']);
+                        td[i].innerHTML = list2[a]['nombreProducto'];
+                    }
+                }
+            }
+
+
+        }
+
+
+    </script>
+
+
+
+</body>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

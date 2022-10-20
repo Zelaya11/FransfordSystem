@@ -1,0 +1,72 @@
+﻿@model FransfordSystem.Models.Inventario
+@using Newtonsoft.Json
+
+@{
+    ViewData["Title"] = "Delete";
+}
+<body onload="nombre()">
+
+<h1>Eliminar inventario</h1>
+
+<h3>¿Realmente desea eliminar este registro de inventario?</h3>
+<div>
+    <hr />
+        <table style="width:auto; height:20px" class="table table-condensed table-bordered table-hover">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.idProducto)
+                </th>
+                <th class="producto">
+                    @Html.DisplayFor(model => model.idProducto)
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.fechaVencimiento)
+                </th>
+                <th>
+                    @Html.DisplayFor(model => model.fechaVencimiento)
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.stock)
+                </th>
+                <th>
+                    @Html.DisplayFor(model => model.stock)
+                </th>
+            </tr>
+
+        </table>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="idInventario" />
+        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+        <a asp-action="Index">Volver al registro de inventarios</a>
+    </form>
+</div>
+    <script>
+        function nombre() {
+            var list2 = [];
+            var list2 = @Html.Raw(JsonConvert.SerializeObject(ViewBag.productoDeLista));
+            let td = document.getElementsByClassName("producto");
+
+
+            for (let i = 0; i < td.length; i++) {
+                for (let a = 0; a < list2.length; a++) {
+                    if (td[i].innerHTML.trim() == list2[a]['IdProducto']) {
+                        console.log(list2[a]['IdProducto']);
+                        td[i].innerHTML = list2[a]['nombreProducto'];
+                    }
+                }
+            }
+
+
+        }
+
+
+    </script>
+
+
+
+</body>

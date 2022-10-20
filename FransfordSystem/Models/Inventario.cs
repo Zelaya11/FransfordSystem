@@ -7,7 +7,7 @@ namespace FransfordSystem.Models
 {
     public class Inventario
     {
-        //ID de la asistencia
+        //ID del inventario
         [Display(Name = "idInventario")]
         [Required(ErrorMessage = "Este campo es obligatorio")]
         [Key]
@@ -18,14 +18,6 @@ namespace FransfordSystem.Models
         public string idProducto { get; set; }
         public Producto? producto { get; set; }
 
-        public DateTime fechaNacimiento { get; set; }
-        //Fecha ingreso
-        [Display(Name = "Fecha de ingreso")]
-        [Required(ErrorMessage = "Este campo es obligatorio")]
-        [DataType(DataType.Date)]
-        [Column(TypeName = "Date")]
-        public DateTime fechaIngreso { get; set; }
-
         //Fecha vencimiento
         [Display(Name = "Fecha de vencimiento")]
         [Required(ErrorMessage = "Este campo es obligatorio")]
@@ -34,7 +26,7 @@ namespace FransfordSystem.Models
         public DateTime fechaVencimiento { get; set; }
 
         [Display(Name = "Stock")]
-        [RegularExpression(@"^[0-9]{2}$", ErrorMessage = "Ingrese un stock valido")]
+        [Range(0, 100, ErrorMessage = "Ingrese un numero entre 0 a 100")]
         //[Required(ErrorMessage = "Este campo es obligatorio")]
         public int? stock { get; set; }
 
