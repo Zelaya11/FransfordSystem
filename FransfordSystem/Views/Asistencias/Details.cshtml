@@ -1,36 +1,70 @@
-﻿@model FransfordSystem.Models.Asistencia
+﻿@using Newtonsoft.Json
+@model FransfordSystem.Models.Asistencia
 
 @{
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+
+<body onload="nombre()">
+<h1>Detalles de la asistencia</h1>
 
 <div>
-    <h4>Asistencia</h4>
+    <h4>Consulta de la información completa del registro de la asistencia</h4>
     <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.idUsuario)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.idUsuario)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.horaEntrada)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.horaEntrada)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.horaSalida)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.horaSalida)
-        </dd>
-    </dl>
+    <table style="width:auto; height:20px" class="table table-condensed table-bordered table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.idUsuario)
+            </th>
+            <th class="cliente">
+                @Html.DisplayFor(model => model.idUsuario)
+            </th>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.horaEntrada)
+            </th>
+            <th>
+                @Html.DisplayFor(model => model.horaEntrada)
+            </th>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.horaSalida)
+            </th>
+            <th>
+                @Html.DisplayFor(model => model.horaSalida)
+            </th>
+        </tr>
+    </table>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.idAsistencia">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Volver al resgistro de la asistencia</a>
 </div>
+
+<script>
+            function nombre() {
+                var list2 = [];
+                var list2 = @Html.Raw(JsonConvert.SerializeObject(ViewBag.usuarioDeLista));
+                let td = document.getElementsByClassName("cliente");
+
+
+                for (let i = 0;i < td.length;i++){
+                    for (let a = 0;a < list2.length; a++) {
+                        if (td[i].innerHTML.trim() == list2[a]['Id']) {
+                            console.log(list2[a]['Id']);
+                        td[i].innerHTML = list2[a]['nombreTrabajador']+ " " + list2[a]['apellidoTrabajador'];
+                        }
+                    }
+                }
+       
+
+            }
+
+
+        </script>
+
+
+
+</body>

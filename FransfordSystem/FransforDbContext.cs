@@ -31,6 +31,8 @@ namespace FransfordSystem
 
         public DbSet<Cita> Cita { get; set; }
 
+        public DbSet<Inventario> Inventario { get; set; }
+
 
 
 

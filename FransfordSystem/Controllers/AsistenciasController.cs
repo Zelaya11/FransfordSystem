@@ -23,12 +23,25 @@ namespace FransfordSystem.Controllers
         // GET: Asistencias
         public async Task<IActionResult> Index()
         {
+            List<Usuario> usuarioLista = new List<Usuario>();
+            usuarioLista = (from usuario in _context.Usuario select usuario).ToList();
+            ViewBag.usuarioDeLista = usuarioLista;
+
+            /*
+            var usuarios = from u in _context.Usuario
+                         select u;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                usuarios = usuarios.Where(s => s.nombreTrabajador!.Contains(searchString));
+            }
+
+            return View(await usuarios.ToListAsync());
+            */
+
             return _context.Asistencia != null ?
                         View(await _context.Asistencia.ToListAsync()) :
                         Problem("Entity set 'FransforDbContext.Asistencia'  is null.");
-
-           
-
 
         }
 
@@ -38,22 +51,18 @@ namespace FransfordSystem.Controllers
             usuarioLista = (from usuario in _context.Usuario select usuario).ToList();
             ViewBag.usuarioDeLista = usuarioLista;
 
-
-
-
             return _context.Asistencia != null ?
                         View(await _context.Asistencia.ToListAsync()) :
                         Problem("Entity set 'FransforDbContext.Asistencia'  is null.");
-
-          
-
-
-
         }
 
         // GET: Asistencias/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            List<Usuario> usuarioLista = new List<Usuario>();
+            usuarioLista = (from usuario in _context.Usuario select usuario).ToList();
+            ViewBag.usuarioDeLista = usuarioLista;
+
             if (id == null || _context.Asistencia == null)
             {
                 return NotFound();
@@ -167,6 +176,10 @@ namespace FransfordSystem.Controllers
         // GET: Asistencias/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            List<Usuario> usuarioLista = new List<Usuario>();
+            usuarioLista = (from usuario in _context.Usuario select usuario).ToList();
+            ViewBag.usuarioDeLista = usuarioLista;
+
             if (id == null || _context.Asistencia == null)
             {
                 return NotFound();
