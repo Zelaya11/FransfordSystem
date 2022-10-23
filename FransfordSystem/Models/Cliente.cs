@@ -48,6 +48,7 @@ namespace FransfordSystem.Models
         public ICollection<Cita>? cita { get; set; }
         public ICollection<ReporteExamen>? reporteExamenes { get; set; }
 
+        public ICollection<Factura>? facturas { get; set; }
 
 
 

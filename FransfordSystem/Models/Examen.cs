@@ -38,6 +38,7 @@ namespace FransfordSystem.Models
         public string nombreMuestra { get; set; }
 
 
+
     }
 
 

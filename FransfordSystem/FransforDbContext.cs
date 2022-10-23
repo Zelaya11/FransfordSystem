@@ -33,6 +33,10 @@ namespace FransfordSystem
 
         public DbSet<Inventario> Inventario { get; set; }
 
+        public DbSet<Factura> Factura { get; set; }
+
+        public DbSet<FacturaExamen> FacturaExamen { get; set; }
+
 
 
 

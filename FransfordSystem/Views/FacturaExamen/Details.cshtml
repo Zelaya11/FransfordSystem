@@ -1,0 +1,42 @@
+﻿@model FransfordSystem.Models.FacturaExamen
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>FacturaExamen</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.idExamen)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.idExamen)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.idFactura)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.idFactura)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.idCliente)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.idCliente)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.precioExamen)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.precioExamen)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.idFacEx">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
