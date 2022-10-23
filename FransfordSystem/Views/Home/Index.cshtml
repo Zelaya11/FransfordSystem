@@ -86,7 +86,7 @@
 				</div><!--/.service-img-->
 				<div class="service-txt">
 					<h2>
-						<a asp-controller="Home"  asp-action="Desarrollo">Inventario</a>
+						<a asp-controller="Inventarios"  asp-action="Index">Inventario</a>
 					</h2>
 				</div><!--/.service-txt-->
 			</div><!--/.service-single-->
@@ -132,7 +132,22 @@
 					</div><!--/.service-img-->
 					<div class="service-txt">
 						<h2>
-							<a asp-action="MarcarA">Marcar Asistencia</a>
+							<a asp-controller="Asistencias" asp-action="MarcarA">Marcar Asistencia</a>
+						</h2>
+					</div><!--/.service-txt-->
+				</div><!--/.service-single-->
+				<br>
+			<br>
+			</div><!--/.col-->
+
+			<div class="col-sm-4 col-xs-12">
+				<div class="service-single text-center">
+					<div class="service-img">
+						<img src="/dist/img/ReporteAsistencia.png" alt="image of service" width="100" height="100"/>
+					</div><!--/.service-img-->
+					<div class="service-txt">
+						<h2>
+							<a asp-controller="Asistencias" asp-action="Index">Reporte de Asistencia</a>
 						</h2>
 					</div><!--/.service-txt-->
 				</div><!--/.service-single-->
