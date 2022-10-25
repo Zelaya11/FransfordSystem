@@ -22,7 +22,7 @@ namespace FransfordSystem.Controllers
         // GET: Facturas
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Factura.ToListAsync());
+              return View(await _context.Factura.Include(v => v.cliente).ToListAsync());
         }
 
         // GET: Facturas/Details/5
@@ -33,12 +33,21 @@ namespace FransfordSystem.Controllers
                 return NotFound();
             }
 
-            var factura = await _context.Factura
+            var factura = await _context.Factura.Include(c=> c.cliente)
                 .FirstOrDefaultAsync(m => m.IdFactura == id);
+
+
             if (factura == null)
             {
                 return NotFound();
             }
+
+            ViewBag.idFac = id;
+            List<FacturaExamen> examFacLista = new List<FacturaExamen>();
+            examFacLista = (from facturaexamen in _context.FacturaExamen.Include(f => f.Examen) select facturaexamen).ToList();
+            ViewBag.examFacDeLista = examFacLista;
+            
+
 
             return View(factura);
         }
@@ -62,6 +71,10 @@ namespace FransfordSystem.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("IdFactura,fechaFactura,totalFactura,idCliente")] Factura factura)
         {
+            var cliente1 = _context.Cliente.Find(factura.idCliente);
+            factura.cliente = cliente1;
+
+
             if (ModelState.IsValid)
             {
                 _context.Add(factura);
@@ -159,8 +172,13 @@ namespace FransfordSystem.Controllers
                 return Problem("Entity set 'FransforDbContext.Factura'  is null.");
             }
             var factura = await _context.Factura.FindAsync(id);
+            var facExamen = _context.FacturaExamen.Where(r => r.idFactura == id).ToList();
             if (factura != null)
             {
+                if (facExamen != null)
+                {
+                    _context.FacturaExamen.RemoveRange(facExamen);
+                }
                 _context.Factura.Remove(factura);
             }
             

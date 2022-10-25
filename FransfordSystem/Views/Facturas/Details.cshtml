@@ -4,33 +4,92 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<body>
+   <div align="right">
+    <a id="printPDF" onclick="pdf()" class="btn btn-primary">Imprimir</a>
+    </div>
+   <div id="repor">
+<p> 
+    <img src="~/dist/img/AdminLTELogo.png" align="left"><h1 align="center">LABORATORIO CLINICO FRANSFORD</h1>
+    <h5 align="center">CALLE MORAZAN N.13 LOCAL A 2DA.PLANTA 25 METROS AL ORIENTE DE ALCALDIA DE CIUDAD DELGADO TEL.2286-8915 </h5>
+    <h5 align="center">REGISTRO C.S.S.P.  N°  973, LIC.EDWIN GUEVARA ROMERO  J.V.P.L.C. N° 1287 </h5>
+</p>
 
 <div>
-    <h4>Factura</h4>
     <hr />
     <dl class="row">
+        <dt class= "col-sm-2">
+            @Html.DisplayNameFor(model => model.idCliente)
+        </dt>
+        <dd class = "col-sm-2" id="nombreC">
+            @Html.DisplayFor(model => model.cliente.nombreCliente) 
+            @Html.DisplayFor(model => model.cliente.apellidoCliente)
+        </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.fechaFactura)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "col-sm-2">
             @Html.DisplayFor(model => model.fechaFactura)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.totalFactura)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.totalFactura)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.idCliente)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.idCliente)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.IdFactura">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <table class="table">
+    <thead>
+        <tr>
+            <th>
+                Examen
+            </th>
+            <th>
+                Precio Examen
+            </th>
+        </tr>
+    </thead>
+     <tbody>
+        @{                      
+            var listaRes = ViewBag.examFacDeLista as IEnumerable<FransfordSystem.Models.FacturaExamen>;
+             int selectedId = Convert.ToInt32(@ViewBag.idFac);
+            @foreach (var item in listaRes) {
+                <tr>
+                    @if (item.idFactura == selectedId )
+                    {
+                    <td class="examen" > @item.Examen.nombreExamen</td>
+                    <td class="precio" >@item.precioExamen</td>                                                                                                              
+                    }
+                    
+                </tr>
+}
+}
+    </tbody>
+
+</table>
+<div class="row">
+    <div class="col-md-3">
+        TOTAL 
+    </div>
+    <div class="col-xs-4">
+    $ @Html.DisplayFor(model => model.totalFactura)
+    </div>
 </div>
+</div>
+
+
+   </div> 
+   <script>
+       function pdf(){
+            var element = document.getElementById('repor');
+            var nombre= document.getElementById('nombreC');
+            
+            html2pdf().from(element).set({
+            margin: [30,10,5,10],
+            pagebreak:{ avoid: 'tr'},
+            jsPDF:{ orientation: 'landscape', unit:'pt', format: 'letter', compressPDF: true}
+            }).save('Reporte'+ nombre.innerHTML)
+            }
+   </script>
+<div>
+    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model?.IdFactura">Editar</a> |
+    <a  class="btn btn-primary" asp-action="Index">Regresar</a>
+</div>
+</body>
+<script src="~/js/html2pdf.bundle.min.js"></script>

@@ -47,9 +47,9 @@ namespace FransfordSystem.Controllers
                 return NotFound();
             }
 
-            var reporte = await _context.ReporteExamen
+            var reporte = await _context.ReporteExamen.Include(c => c.cliente)
                 .FirstOrDefaultAsync(m => m.idCliente == id);
-            ViewBag.ReporteFiltrado = await _context.ReporteExamen.Where(o => o.idCliente == id).ToListAsync();
+            ViewBag.ReporteFiltrado = await _context.ReporteExamen.Include(c => c.cliente).Where(o => o.idCliente == id).ToListAsync();
             if (reporte == null)
             {
                 return Redirect("/Descripciones/Nodescripcion");
@@ -170,6 +170,10 @@ namespace FransfordSystem.Controllers
 
         public async Task<IActionResult> Create([Bind("IdReporteExamen,fechaReporte,idCliente")] ReporteExamen reporteExamen)
         {
+
+            var cliente1 = _context.Cliente.Find(reporteExamen.idCliente);
+            reporteExamen.cliente = cliente1;
+
             if (ModelState.IsValid)
             {
                 _context.Add(reporteExamen);

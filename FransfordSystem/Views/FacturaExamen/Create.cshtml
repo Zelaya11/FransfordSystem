@@ -6,16 +6,15 @@
      var descri = ViewBag.descripcionDeLista as List<SelectListItem>;
 }
 
-<h1>Create</h1>
+<h1>Factura</h1>
 
-<h4>FacturaExamen</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <input asp-for="idFactura" class="form-control"  type="hidden" value="@ViewBag.idFac"/>
+                <input id="idFactura" asp-for="idFactura" class="form-control"  type="hidden" value="@ViewBag.idFac"/>
                 <span asp-validation-for="idFactura" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -25,7 +24,7 @@
             
             <div class="form-group">
                 <label class="control-label">Seleccione Examen</label>
-                <select asp-for="idExamen" onchange="depende()" id="selectExamen" class="form-control"  asp-items="@(new SelectList(@ViewBag.examenDeLista, "idExamen", "nombreExamen","PrecioExamen"))"></select>
+                <select asp-for="idExamen" onchange="precio()" id="selectExamen" class="form-control"  asp-items="@(new SelectList(@ViewBag.examenDeLista, "idExamen", "nombreExamen","PrecioExamen"))"></select>
                 <span asp-validation-for="idExamen" class="text-danger"></span>
             </div>      
             <div class="form-group">
@@ -40,26 +39,72 @@
     </div>
 </div>
     <script>
-function depende() {
+function precio() {
     let selectExamenes = document.getElementById('selectExamen');
     let valueExamen = selectExamenes.value;
     const examenSeleccionado = valueExamen;
     console.log(examenSeleccionado);
     var list = [];
+    var list2 = [];
     var list = @Html.Raw(JsonConvert.SerializeObject(ViewBag.examenDeLista));
-    console.log(list[examenSeleccionado]['PrecioExamen']);
+    var list2 = @Html.Raw(JsonConvert.SerializeObject(ViewBag.examFacDeLista));
     $("#precio2").val(list[examenSeleccionado]['PrecioExamen']);
     }
     </script>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Examen
+            </th>
+            <th>
+                Precio
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+     <tbody>
+        @{                   
+            var listaRes = ViewBag.examFacDeLista as IEnumerable<FransfordSystem.Models.FacturaExamen>;
+             int selectedId = Convert.ToInt32(@ViewBag.idFac);
+                        @foreach (var item in listaRes) {
+                            <tr>
+                                @if (item.idFactura == selectedId )
+                    {
+                                <td class="examen" > @item.Examen.nombreExamen</td>
+                                <td class="precio" >@item.precioExamen</td>
+                                 <td align="center">
+                                <a asp-action="Edit" asp-route-id="@item.idFacEx" class="btn btn-secondary" role="button" aria-pressed="true">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                                        <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
+                                    </svg> Editar
+                                </a>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a asp-action="Delete" asp-route-id="@item.idFacEx" class="btn btn-danger" role="button" aria-pressed="true">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                        <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+                                    </svg> Eliminar
+                                </a>
+                            </td>
+                    }
+                            </tr>
+}
+}
+    </tbody>
 
-
-
-
-
+</table>
+<div class="row">
+    <div class="col-md-3">
+        TOTAL 
+    </div>
+    <div class="col-xs-4">
+    $ @ViewBag.totalF
+    </div>
+</div>
 
 
 <div>
-    <a asp-action="Index">Regresar</a>
+    <a asp-action="Index" class="btn btn-primary">Regresar</a>
 </div>
 
 @section Scripts {

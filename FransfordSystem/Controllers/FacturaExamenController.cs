@@ -59,7 +59,9 @@ namespace FransfordSystem.Controllers
             ViewBag.idFac = valor1;
             ViewBag.idCli = valor2;
 
-
+            List<FacturaExamen> examFacLista = new List<FacturaExamen>();
+            examFacLista = (from facturaexamen in _context.FacturaExamen select facturaexamen).ToList();
+            ViewBag.examFacDeLista = examFacLista;
 
 
             return View();
@@ -78,10 +80,13 @@ namespace FransfordSystem.Controllers
             var examen1 = _context.Examen.Find(facturaExamen.idExamen);
             facturaExamen.Examen = examen1;
 
+
             if (ModelState.IsValid)
             {
 
                 _context.Add(facturaExamen);
+                factura1.totalFactura += examen1.PrecioExamen.GetValueOrDefault();
+                _context.Factura.Update(factura1);
                 await _context.SaveChangesAsync();
 
                 TempData["valorIdFactura"] = facturaExamen.idFactura;
@@ -95,6 +100,10 @@ namespace FransfordSystem.Controllers
                 examenesLista = (from examen in _context.Examen select examen).ToList();
                 examenesLista.Insert(0, new Examen { idExamen = 0, nombreExamen = "Seleccionar" });
                 ViewBag.examenDeLista = examenesLista;
+                ViewBag.totalF = factura1.totalFactura;
+                List<FacturaExamen> examFacLista = new List<FacturaExamen>();
+                examFacLista = (from facturaexamen in _context.FacturaExamen select facturaexamen).ToList();
+                ViewBag.examFacDeLista = examFacLista;
 
 
                 return View();
