@@ -18,9 +18,10 @@ namespace FransfordSystem.Models
         public DateTime fechaFactura { get; set; }
 
         [Display(Name = "Total")]
-        public float totalFactura { get; set; }
+        public double totalFactura { get; set; }
 
         [Display(Name = "Cliente")]
+        [RegularExpression(@"^([1-9]+\d*)", ErrorMessage = "Ingrese un nombre válido")]
         [Required(ErrorMessage = "Este campo es obligatorio")]
         public int idCliente { get; set; }
         public Cliente? cliente { get; set; }

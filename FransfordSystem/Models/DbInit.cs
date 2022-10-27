@@ -122,14 +122,14 @@ namespace FransfordSystem.Models
             {
                 var examen = new Examen[]
                     {
-                    new Examen{idCategoria=1,nombreExamen="ACTH",PrecioExamen=1, nombreMuestra="SANGRE"},
-                    new Examen{idCategoria=1,nombreExamen="FSH",PrecioExamen=2,nombreMuestra="SANGRE"},
-                    new Examen{idCategoria=2,nombreExamen="FTA/ABS",PrecioExamen=3,nombreMuestra="SANGRE"},
-                    new Examen{idCategoria=3,nombreExamen="FULL",PrecioExamen=4,nombreMuestra="SANGRE"},
-                    new Examen{idCategoria=3,nombreExamen="GAMMA",PrecioExamen=5,nombreMuestra="SANGRE"},
-                    new Examen{idCategoria=3,nombreExamen="Glucosa",PrecioExamen=5,nombreMuestra="SANGRE"},
-                    new Examen{idCategoria=4,nombreExamen="Gota Gruesa",PrecioExamen=5,nombreMuestra="SANGRE"},
-                    new Examen{idCategoria=5,nombreExamen="Directo GRAM",PrecioExamen=5,nombreMuestra="HECES"},
+                    new Examen{idCategoria=1,nombreExamen="ACTH",PrecioExamen=1.00, nombreMuestra="SANGRE"},
+                    new Examen{idCategoria=1,nombreExamen="FSH",PrecioExamen=2.00,nombreMuestra="SANGRE"},
+                    new Examen{idCategoria=2,nombreExamen="FTA/ABS",PrecioExamen=3.50,nombreMuestra="SANGRE"},
+                    new Examen{idCategoria=3,nombreExamen="FULL",PrecioExamen=4.25,nombreMuestra="SANGRE"},
+                    new Examen{idCategoria=3,nombreExamen="GAMMA",PrecioExamen=5.75,nombreMuestra="SANGRE"},
+                    new Examen{idCategoria=3,nombreExamen="Glucosa",PrecioExamen=6.50,nombreMuestra="SANGRE"},
+                    new Examen{idCategoria=4,nombreExamen="Gota Gruesa",PrecioExamen=3.99,nombreMuestra="SANGRE"},
+                    new Examen{idCategoria=5,nombreExamen="Directo GRAM",PrecioExamen=2.78,nombreMuestra="HECES"},
                     };
                 foreach (Examen Ex in examen)
                 {
