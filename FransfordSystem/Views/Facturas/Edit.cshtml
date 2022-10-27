@@ -17,14 +17,12 @@
                 <input asp-for="fechaFactura" class="form-control" />
                 <span asp-validation-for="fechaFactura" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="totalFactura" class="control-label"></label>
-                <input asp-for="totalFactura" class="form-control" />
+            <div class="form-group">               
+                <input asp-for="totalFactura" type="hidden" class="form-control" />
                 <span asp-validation-for="totalFactura" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="idCliente" class="control-label"></label>
-                <input asp-for="idCliente" class="form-control" />
+                <input asp-for="idCliente" type="hidden" class="form-control" />
                 <span asp-validation-for="idCliente" class="text-danger"></span>
             </div>
             <div class="form-group">
