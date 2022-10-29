@@ -21,7 +21,7 @@ namespace FransfordSystem.Controllers
         }
 
         // GET: Asistencias
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
             if (User.Identity.IsAuthenticated)
             {
@@ -29,17 +29,16 @@ namespace FransfordSystem.Controllers
             usuarioLista = (from usuario in _context.Usuario select usuario).ToList();
             ViewBag.usuarioDeLista = usuarioLista;
 
-            /*
-            var usuarios = from u in _context.Usuario
-                         select u;
 
+            var asistencia = from a in _context.Asistencia select a;
+            
             if (!String.IsNullOrEmpty(searchString))
             {
-                usuarios = usuarios.Where(s => s.nombreTrabajador!.Contains(searchString));
+                asistencia = asistencia.Where(s => s.idUsuario!.Contains(searchString));
             }
 
-            return View(await usuarios.ToListAsync());
-            */
+            return View(await asistencia.ToListAsync());
+            
 
             return _context.Asistencia != null ?
                         View(await _context.Asistencia.ToListAsync()) :
@@ -189,7 +188,7 @@ namespace FransfordSystem.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(MarcarA));
+                return RedirectToAction(nameof(Index));
             }
             return View(asistencia);
         }
