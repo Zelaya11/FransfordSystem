@@ -22,15 +22,25 @@ namespace FransfordSystem.Controllers
         // GET: Productos
         public async Task<IActionResult> Index()
         {
-              return _context.Producto != null ? 
+            if (User.Identity.IsAuthenticated)
+            {
+
+                return _context.Producto != null ? 
                           View(await _context.Producto.ToListAsync()) :
                           Problem("Entity set 'FransforDbContext.Producto'  is null.");
+            }
+            else
+            {
+                return Redirect("Identity/Account/Login");
+            }
         }
 
         // GET: Productos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Producto == null)
+            if (User.Identity.IsAuthenticated)
+            {
+                if (id == null || _context.Producto == null)
             {
                 return NotFound();
             }
@@ -43,12 +53,24 @@ namespace FransfordSystem.Controllers
             }
 
             return View(producto);
+            }
+            else
+            {
+                return Redirect("Identity/Account/Login");
+            }
         }
 
         // GET: Productos/Create
         public IActionResult Create()
         {
-            return View();
+            if (User.Identity.IsAuthenticated)
+            {
+                return View();
+            }
+            else
+            {
+                return Redirect("Identity/Account/Login");
+            }
         }
 
         // POST: Productos/Create
@@ -70,7 +92,9 @@ namespace FransfordSystem.Controllers
         // GET: Productos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Producto == null)
+            if (User.Identity.IsAuthenticated)
+            {
+                if (id == null || _context.Producto == null)
             {
                 return NotFound();
             }
@@ -81,6 +105,11 @@ namespace FransfordSystem.Controllers
                 return NotFound();
             }
             return View(producto);
+            }
+            else
+            {
+                return Redirect("Identity/Account/Login");
+            }
         }
 
         // POST: Productos/Edit/5

@@ -37,9 +37,10 @@ namespace FransfordSystem.Controllers
 
         public async Task<IActionResult> Filtrado(int? id)
         {
+            if (User.Identity.IsAuthenticated)
+            {
 
-
-            if (id == null || _context.Descripcion == null)
+                if (id == null || _context.Descripcion == null)
             {
                 return NotFound();
             }
@@ -53,7 +54,11 @@ namespace FransfordSystem.Controllers
             }
 
             return View(descripcion);
-
+            }
+            else
+            {
+                return Redirect("Identity/Account/Login");
+            }
         }
 
         public IActionResult Nodescripcion()
@@ -72,7 +77,9 @@ namespace FransfordSystem.Controllers
         // GET: Descripciones/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Descripcion == null)
+            if (User.Identity.IsAuthenticated)
+            {
+                if (id == null || _context.Descripcion == null)
             {
                 return NotFound();
             }
@@ -86,6 +93,12 @@ namespace FransfordSystem.Controllers
             }
 
             return View(descripcion);
+
+            }
+            else
+            {
+                return Redirect("Identity/Account/Login");
+            }
         }
 
         // GET: Descripciones/Create
@@ -134,7 +147,9 @@ namespace FransfordSystem.Controllers
         // GET: Descripciones/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Descripcion == null)
+            if (User.Identity.IsAuthenticated)
+            {
+                if (id == null || _context.Descripcion == null)
             {
                 return NotFound();
             }
@@ -145,6 +160,11 @@ namespace FransfordSystem.Controllers
                 return NotFound();
             }
             return View(descripcion);
+            }
+            else
+            {
+                return Redirect("Identity/Account/Login");
+            }
         }
 
         // POST: Descripciones/Edit/5
@@ -185,7 +205,9 @@ namespace FransfordSystem.Controllers
         // GET: Descripciones/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Descripcion == null)
+            if (User.Identity.IsAuthenticated)
+            {
+                if (id == null || _context.Descripcion == null)
             {
                 return NotFound();
             }
@@ -198,6 +220,12 @@ namespace FransfordSystem.Controllers
             }
 
             return View(descripcion);
+
+            }
+            else
+            {
+                return Redirect("Identity/Account/Login");
+            }
         }
 
         // POST: Descripciones/Delete/5

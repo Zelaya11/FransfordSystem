@@ -174,7 +174,9 @@ namespace FransfordSystem.Controllers
         // GET: Examenes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Examen == null)
+            if (User.Identity.IsAuthenticated)
+            {
+                if (id == null || _context.Examen == null)
             {
                 return NotFound();
             }
@@ -191,6 +193,12 @@ namespace FransfordSystem.Controllers
             }
 
             return View(examen);
+
+            }
+            else
+            {
+                return Redirect("Identity/Account/Login");
+            }
         }
 
         // POST: Examenes/Delete/5

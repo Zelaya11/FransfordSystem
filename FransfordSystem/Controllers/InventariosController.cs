@@ -22,17 +22,26 @@ namespace FransfordSystem.Controllers
         // GET: Inventarios
         public async Task<IActionResult> Index()
         {
-            List<Producto> productoLista = new List<Producto>();
+            if (User.Identity.IsAuthenticated)
+            {
+                List<Producto> productoLista = new List<Producto>();
             productoLista = (from producto in _context.Producto select producto).ToList();
             productoLista.Insert(0, new Producto { IdProducto = 0, nombreProducto = "Seleccionar" });
             ViewBag.productoDeLista = productoLista;
             return View(await _context.Inventario.ToListAsync());
+            }
+            else
+            {
+                return Redirect("Identity/Account/Login");
+            }
         }
 
         // GET: Inventarios/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            List<Producto> productoLista = new List<Producto>();
+            if (User.Identity.IsAuthenticated)
+            {
+                List<Producto> productoLista = new List<Producto>();
             productoLista = (from producto in _context.Producto select producto).ToList();
             productoLista.Insert(0, new Producto { IdProducto = 0, nombreProducto = "Seleccionar" });
             ViewBag.productoDeLista = productoLista;
@@ -49,6 +58,11 @@ namespace FransfordSystem.Controllers
             }
 
             return View(inventario);
+            }
+            else
+            {
+                return Redirect("Identity/Account/Login");
+            }
         }
 
         // GET: Inventarios/Create
@@ -88,7 +102,9 @@ namespace FransfordSystem.Controllers
         // GET: Inventarios/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            List<Producto> productoLista = new List<Producto>();
+            if (User.Identity.IsAuthenticated)
+            {
+                List<Producto> productoLista = new List<Producto>();
             productoLista = (from producto in _context.Producto select producto).ToList();
             productoLista.Insert(0, new Producto { IdProducto = 0, nombreProducto = "Seleccionar" });
             ViewBag.productoDeLista = productoLista;
@@ -103,6 +119,11 @@ namespace FransfordSystem.Controllers
                 return NotFound();
             }
             return View(inventario);
+            }
+            else
+            {
+                return Redirect("Identity/Account/Login");
+            }
         }
 
         // POST: Inventarios/Edit/5
@@ -143,7 +164,9 @@ namespace FransfordSystem.Controllers
         // GET: Inventarios/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            List<Producto> productoLista = new List<Producto>();
+            if (User.Identity.IsAuthenticated)
+            {
+                List<Producto> productoLista = new List<Producto>();
             productoLista = (from producto in _context.Producto select producto).ToList();
             productoLista.Insert(0, new Producto { IdProducto = 0, nombreProducto = "Seleccionar" });
             ViewBag.productoDeLista = productoLista;
@@ -161,6 +184,11 @@ namespace FransfordSystem.Controllers
             }
 
             return View(inventario);
+            }
+            else
+            {
+                return Redirect("Identity/Account/Login");
+            }
         }
 
         // POST: Inventarios/Delete/5

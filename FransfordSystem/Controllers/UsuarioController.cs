@@ -107,7 +107,9 @@ namespace FransfordSystem.Controllers
 
         public async Task<IActionResult> Edit(string? id)
         {
-            if (id == null || _context.Usuario == null)
+            if (User.Identity.IsAuthenticated)
+            {
+                if (id == null || _context.Usuario == null)
             {
                 return NotFound();
             }
@@ -131,6 +133,11 @@ namespace FransfordSystem.Controllers
 
 
             return View(editUsu);
+            }
+            else
+            {
+                return Redirect("Identity/Account/Login");
+            }
         }
 
         [HttpPost]

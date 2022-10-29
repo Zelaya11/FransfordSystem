@@ -39,7 +39,9 @@ namespace FransfordSystem.Controllers
         // GET: Clientes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Cliente == null)
+            if (User.Identity.IsAuthenticated)
+            {
+                if (id == null || _context.Cliente == null)
             {
                 return NotFound();
             }
@@ -52,6 +54,12 @@ namespace FransfordSystem.Controllers
             }
 
             return  View(cliente);
+
+            }
+            else
+            {
+                return Redirect("Identity/Account/Login");
+            }
         }
 
         // GET: Clientes/Create
@@ -85,7 +93,9 @@ namespace FransfordSystem.Controllers
         // GET: Clientes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Cliente == null)
+            if (User.Identity.IsAuthenticated)
+            {
+                if (id == null || _context.Cliente == null)
             {
                 return NotFound();
             }
@@ -96,6 +106,11 @@ namespace FransfordSystem.Controllers
                 return NotFound();
             }
             return View(cliente);
+            }
+            else
+            {
+                return Redirect("Identity/Account/Login");
+            }
         }
 
         // POST: Clientes/Edit/5
@@ -136,7 +151,9 @@ namespace FransfordSystem.Controllers
         // GET: Clientes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Cliente == null)
+            if (User.Identity.IsAuthenticated)
+            {
+                if (id == null || _context.Cliente == null)
             {
                 return NotFound();
             }
@@ -149,6 +166,12 @@ namespace FransfordSystem.Controllers
             }
 
             return View(cliente);
+
+            }
+            else
+            {
+                return Redirect("Identity/Account/Login");
+            }
         }
 
         // POST: Clientes/Delete/5

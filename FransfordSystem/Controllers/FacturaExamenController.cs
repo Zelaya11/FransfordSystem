@@ -22,12 +22,23 @@ namespace FransfordSystem.Controllers
         // GET: FacturaExamen
         public async Task<IActionResult> Index()
         {
-              return View(await _context.FacturaExamen.ToListAsync());
+            if (User.Identity.IsAuthenticated)
+            {
+                return View(await _context.FacturaExamen.ToListAsync());
+            }
+            else
+            {
+                return Redirect("Identity/Account/Login");
+            }
         }
 
         // GET: FacturaExamen/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+            
+
             if (id == null || _context.FacturaExamen == null)
             {
                 return NotFound();
@@ -41,13 +52,21 @@ namespace FransfordSystem.Controllers
             }
 
             return View(facturaExamen);
+
+            }
+            else
+            {
+                return Redirect("Identity/Account/Login");
+            }
         }
 
         // GET: FacturaExamen/Create
         public IActionResult Create()
         {
-            //
-            string valor1 = TempData["valorIdFactura"].ToString();
+            if (User.Identity.IsAuthenticated)
+            {
+                //
+                string valor1 = TempData["valorIdFactura"].ToString();
             string valor2 = TempData["valorIdCliente"].ToString();
 
             //Genera lista de clientes
@@ -65,6 +84,11 @@ namespace FransfordSystem.Controllers
 
 
             return View();
+            }
+            else
+            {
+                return Redirect("Identity/Account/Login");
+            }
         }
 
         // POST: FacturaExamen/Create
@@ -114,7 +138,9 @@ namespace FransfordSystem.Controllers
         // GET: FacturaExamen/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.FacturaExamen == null)
+            if (User.Identity.IsAuthenticated)
+            {
+                if (id == null || _context.FacturaExamen == null)
             {
                 return NotFound();
             }
@@ -125,6 +151,11 @@ namespace FransfordSystem.Controllers
                 return NotFound();
             }
             return View(facturaExamen);
+            }
+            else
+            {
+                return Redirect("Identity/Account/Login");
+            }
         }
 
         // POST: FacturaExamen/Edit/5
@@ -165,7 +196,9 @@ namespace FransfordSystem.Controllers
         // GET: FacturaExamen/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.FacturaExamen == null)
+            if (User.Identity.IsAuthenticated)
+            {
+                if (id == null || _context.FacturaExamen == null)
             {
                 return NotFound();
             }
@@ -178,6 +211,11 @@ namespace FransfordSystem.Controllers
             }
 
             return View(facturaExamen);
+            }
+            else
+            {
+                return Redirect("Identity/Account/Login");
+            }
         }
 
         // POST: FacturaExamen/Delete/5

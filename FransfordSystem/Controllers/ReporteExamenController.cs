@@ -23,7 +23,9 @@ namespace FransfordSystem.Controllers
         // GET: ReporteExamen
         public async Task<IActionResult> Index()
         {
-            List<Cliente> clientesLista = new List<Cliente>();
+            if (User.Identity.IsAuthenticated)
+            {
+                List<Cliente> clientesLista = new List<Cliente>();
             clientesLista = (from cliente in _context.Cliente select cliente).ToList();
             clientesLista.Insert(0, new Cliente { IdCliente = 0, nombreCliente = "Seleccionar" });
             ViewBag.clienteDeLista = clientesLista;
@@ -32,12 +34,19 @@ namespace FransfordSystem.Controllers
             return _context.ReporteExamen != null ? 
                           View(await _context.ReporteExamen.ToListAsync()) :
                           Problem("Entity set 'FransforDbContext.ReporteExamen'  is null.");
+            }
+            else
+            {
+                return Redirect("Identity/Account/Login");
+            }
         }
 
 
         public async Task<IActionResult> Filtro(int? id)
         {
-            List<Cliente> clientesLista = new List<Cliente>();
+            if (User.Identity.IsAuthenticated)
+            {
+                List<Cliente> clientesLista = new List<Cliente>();
             clientesLista = (from cliente in _context.Cliente select cliente).ToList();
             ViewBag.clienteDeLista = clientesLista;
 
@@ -56,7 +65,11 @@ namespace FransfordSystem.Controllers
             }
 
             return View(reporte);
-
+            }
+            else
+            {
+                return Redirect("Identity/Account/Login");
+            }
         }
 
 
@@ -65,7 +78,9 @@ namespace FransfordSystem.Controllers
         // GET: ReporteExamen/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.ReporteExamen == null)
+            if (User.Identity.IsAuthenticated)
+            {
+                if (id == null || _context.ReporteExamen == null)
             {
                 return NotFound();
             }
@@ -116,13 +131,13 @@ namespace FransfordSystem.Controllers
 
 
 
-
-
-
-
-
-
             return View(reporteExamen);
+
+            }
+            else
+            {
+                return Redirect("Identity/Account/Login");
+            }
         }
 
         // GET: ReporteExamen/Create
@@ -257,8 +272,6 @@ namespace FransfordSystem.Controllers
 
             var clienteLista = (from cliente in _context.Cliente where cliente.IdCliente == reporteExamen.idCliente select cliente).First();
             ViewBag.nombreDeLista = clienteLista.nombreCliente + " " + clienteLista.apellidoCliente;
-
-
 
             return View(reporteExamen);
         }

@@ -22,15 +22,24 @@ namespace FransfordSystem.Controllers
         // GET: Resultadoes
         public async Task<IActionResult> Index()
         {
-              return _context.Resultado != null ? 
+            if (User.Identity.IsAuthenticated)
+            {
+             return _context.Resultado != null ? 
                           View(await _context.Resultado.ToListAsync()) :
                           Problem("Entity set 'FransforDbContext.Resultado'  is null.");
+            }
+            else
+            {
+                return Redirect("Identity/Account/Login");
+            }
         }
 
         // GET: Resultadoes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Resultado == null)
+            if (User.Identity.IsAuthenticated)
+            {
+                if (id == null || _context.Resultado == null)
             {
                 return NotFound();
             }
@@ -43,6 +52,11 @@ namespace FransfordSystem.Controllers
             }
 
             return View(resultado);
+            }
+            else
+            {
+                return Redirect("Identity/Account/Login");
+            }
         }
 
         // GET: Resultadoes/Create
@@ -110,7 +124,9 @@ namespace FransfordSystem.Controllers
         // GET: Resultadoes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Resultado == null)
+            if (User.Identity.IsAuthenticated)
+            {
+                if (id == null || _context.Resultado == null)
             {
                 return NotFound();
             }
@@ -121,6 +137,11 @@ namespace FransfordSystem.Controllers
                 return NotFound();
             }
             return View(resultado);
+            }
+            else
+            {
+                return Redirect("Identity/Account/Login");
+            }
         }
 
         // POST: Resultadoes/Edit/5

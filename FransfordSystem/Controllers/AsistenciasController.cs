@@ -23,7 +23,9 @@ namespace FransfordSystem.Controllers
         // GET: Asistencias
         public async Task<IActionResult> Index()
         {
-            List<Usuario> usuarioLista = new List<Usuario>();
+            if (User.Identity.IsAuthenticated)
+            {
+                List<Usuario> usuarioLista = new List<Usuario>();
             usuarioLista = (from usuario in _context.Usuario select usuario).ToList();
             ViewBag.usuarioDeLista = usuarioLista;
 
@@ -42,24 +44,38 @@ namespace FransfordSystem.Controllers
             return _context.Asistencia != null ?
                         View(await _context.Asistencia.ToListAsync()) :
                         Problem("Entity set 'FransforDbContext.Asistencia'  is null.");
-
+            }
+            else
+            {
+                return Redirect("Identity/Account/Login");
+            }
         }
 
         public async Task<IActionResult> MarcarA()
         {
-            List<Usuario> usuarioLista = new List<Usuario>();
+            if (User.Identity.IsAuthenticated)
+            {
+                List<Usuario> usuarioLista = new List<Usuario>();
             usuarioLista = (from usuario in _context.Usuario select usuario).ToList();
             ViewBag.usuarioDeLista = usuarioLista;
 
             return _context.Asistencia != null ?
                         View(await _context.Asistencia.ToListAsync()) :
                         Problem("Entity set 'FransforDbContext.Asistencia'  is null.");
+
+            }
+            else
+            {
+                return Redirect("Identity/Account/Login");
+            }
         }
 
         // GET: Asistencias/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            List<Usuario> usuarioLista = new List<Usuario>();
+            if (User.Identity.IsAuthenticated)
+            {
+                List<Usuario> usuarioLista = new List<Usuario>();
             usuarioLista = (from usuario in _context.Usuario select usuario).ToList();
             ViewBag.usuarioDeLista = usuarioLista;
 
@@ -77,6 +93,11 @@ namespace FransfordSystem.Controllers
             }
 
             return View(asistencia);
+            }
+            else
+            {
+                return Redirect("Identity/Account/Login");
+            }
         }
 
         // GET: Asistencias/Create
@@ -176,7 +197,11 @@ namespace FransfordSystem.Controllers
         // GET: Asistencias/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            List<Usuario> usuarioLista = new List<Usuario>();
+            if (User.Identity.IsAuthenticated)
+            {
+
+
+                List<Usuario> usuarioLista = new List<Usuario>();
             usuarioLista = (from usuario in _context.Usuario select usuario).ToList();
             ViewBag.usuarioDeLista = usuarioLista;
 
@@ -193,6 +218,12 @@ namespace FransfordSystem.Controllers
             }
 
             return View(asistencia);
+
+            }
+            else
+            {
+                return Redirect("Identity/Account/Login");
+            }
         }
 
         // POST: Asistencias/Delete/5

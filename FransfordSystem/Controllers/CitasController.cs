@@ -22,15 +22,24 @@ namespace FransfordSystem.Controllers
         // GET: Citas
         public async Task<IActionResult> Index()
         {
-              return _context.Cita != null ? 
+            if (User.Identity.IsAuthenticated)
+            {
+                return _context.Cita != null ? 
                           View(await _context.Cita.ToListAsync()) :
                           Problem("Entity set 'FransforDbContext.Cita'  is null.");
+            }
+            else
+            {
+                return Redirect("Identity/Account/Login");
+            }
         }
 
         // GET: Citas/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Cita == null)
+            if (User.Identity.IsAuthenticated)
+            {
+                if (id == null || _context.Cita == null)
             {
                 return NotFound();
             }
@@ -56,6 +65,12 @@ namespace FransfordSystem.Controllers
             ViewBag.clienteDeLista = clienteLista;
 
             return View(cita);
+
+            }
+            else
+            {
+                return Redirect("Identity/Account/Login");
+            }
         }
 
         // GET: Citas/Create
@@ -160,7 +175,9 @@ namespace FransfordSystem.Controllers
         // GET: Citas/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Cita == null)
+            if (User.Identity.IsAuthenticated)
+            {
+                if (id == null || _context.Cita == null)
             {
                 return NotFound();
             }
@@ -173,6 +190,11 @@ namespace FransfordSystem.Controllers
             }
 
             return View(cita);
+            }
+            else
+            {
+                return Redirect("Identity/Account/Login");
+            }
         }
 
         // POST: Citas/Delete/5
