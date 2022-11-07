@@ -96,6 +96,7 @@ namespace FransfordSystem.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("IdResultado,resultadoExamen,idDescripcion,idReporteExamen")] Resultado resultado)
         {
+            
             if (ModelState.IsValid)
             {
                 _context.Add(resultado);

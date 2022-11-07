@@ -146,6 +146,9 @@ namespace FransfordSystem.Models
             {
                 var descripcion = new Descripcion[]
                       {
+                          
+
+
                     new Descripcion{idExamen=1,descripcionExamen="Hormona Adrenocorticotropa",valorMinimo=7f,valorMaximo=9f,idUnidad=1},
                     new Descripcion{idExamen=2,descripcionExamen="Fase Folicular",valorMinimo=3f,valorMaximo=8f,idUnidad=2},
                     new Descripcion{idExamen=2,descripcionExamen="Ciclo Medio",valorMinimo=4f,valorMaximo=13f,idUnidad=2},

@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 var contextOptions = new DbContextOptionsBuilder<FransforDbContext>()
-    .UseSqlServer("Server = localhost; Database = FransDb; Trusted_Connection = True; ")
+    .UseSqlServer("Server = localhost; Database = FransDb; Trusted_Connection = True;")
     .Options;
 using var context = new FransforDbContext(contextOptions);
 
