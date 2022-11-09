@@ -1,72 +1,51 @@
 ﻿@model FransfordSystem.Models.Inventario
-@using Newtonsoft.Json
 
 @{
     ViewData["Title"] = "Delete";
 }
-<body onload="nombre()">
 
-<h1>Eliminar inventario</h1>
+<h1>Delete</h1>
 
-<h3>¿Realmente desea eliminar este registro de inventario?</h3>
+<h3>Are you sure you want to delete this?</h3>
 <div>
+    <h4>Inventario</h4>
     <hr />
-        <table style="width:auto; height:20px" class="table table-condensed table-bordered table-hover">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.idProducto)
-                </th>
-                <th class="producto">
-                    @Html.DisplayFor(model => model.idProducto)
-                </th>
-            </tr>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.fechaVencimiento)
-                </th>
-                <th>
-                    @Html.DisplayFor(model => model.fechaVencimiento)
-                </th>
-            </tr>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.stock)
-                </th>
-                <th>
-                    @Html.DisplayFor(model => model.stock)
-                </th>
-            </tr>
-
-        </table>
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.idProducto)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.idProducto)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.fechaVencimiento)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.fechaVencimiento)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.stock)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.stock)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.entrada)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.entrada)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.salida)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.salida)
+        </dd>
+    </dl>
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="idInventario" />
-        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
-        <a asp-action="Index">Volver al registro de inventarios</a>
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
     </form>
 </div>
-    <script>
-        function nombre() {
-            var list2 = [];
-            var list2 = @Html.Raw(JsonConvert.SerializeObject(ViewBag.productoDeLista));
-            let td = document.getElementsByClassName("producto");
-
-
-            for (let i = 0; i < td.length; i++) {
-                for (let a = 0; a < list2.length; a++) {
-                    if (td[i].innerHTML.trim() == list2[a]['IdProducto']) {
-                        console.log(list2[a]['IdProducto']);
-                        td[i].innerHTML = list2[a]['nombreProducto'];
-                    }
-                }
-            }
-
-
-        }
-
-
-    </script>
-
-
-
-</body>

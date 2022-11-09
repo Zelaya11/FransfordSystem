@@ -23,7 +23,8 @@
             @Html.DisplayNameFor(model => model.idCliente)
         </dt>
         <dd class = "col-sm-10" id="nombreC">
-            @ViewBag.nombreDeLista
+            @Html.DisplayFor(model => model.cliente.nombreCliente)
+            @Html.DisplayFor(model => model.cliente.apellidoCliente)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.fechaReporte)
@@ -66,13 +67,13 @@
         @{
             var listaRes = ViewBag.resultadoDeLista as IEnumerable<FransfordSystem.Models.Resultado>; 
             foreach (var item in listaRes) {
-                                                                                                            <tr>
-                                                                                                            <td class="examen" > @item.idDescripcion</td>
-                                                                                                            <td class="descripcion" >@item.idDescripcion</td>
-                                                                                                            <td class="resul" align="center">@item.resultadoExamen</td>
-                                                                                                            <td  align="left" class="unidad" >@item.idDescripcion</td>
-                                                                                                            <td class="valoresM" align="center"> @item.idDescripcion</td>
-                                                                                                            </tr>
+                <tr>
+                 <td class="examen" > @item.idDescripcion</td>
+                <td class="descripcion" >@item.idDescripcion</td>
+                  <td class="resul" align="center">@item.resultadoExamen</td>
+                 <td  align="left" class="unidad" >@item.idDescripcion</td>
+                 <td class="valoresM" align="center"> @item.idDescripcion</td>
+                 </tr>
             }        
         }
 

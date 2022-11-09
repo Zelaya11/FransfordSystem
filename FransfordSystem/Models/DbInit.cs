@@ -8,10 +8,10 @@ namespace FransfordSystem.Models
 {
     public class DbInit
     {
- 
 
         public static void Iniz(FransforDbContext context)
         {
+            
             context.Database.EnsureCreated();
 
             if (context.Unidad.Any())
@@ -146,8 +146,6 @@ namespace FransfordSystem.Models
             {
                 var descripcion = new Descripcion[]
                       {
-                          
-
 
                     new Descripcion{idExamen=1,descripcionExamen="Hormona Adrenocorticotropa",valorMinimo=7f,valorMaximo=9f,idUnidad=1},
                     new Descripcion{idExamen=2,descripcionExamen="Fase Folicular",valorMinimo=3f,valorMaximo=8f,idUnidad=2},
@@ -167,6 +165,7 @@ namespace FransfordSystem.Models
                       };
                 foreach (Descripcion Des in descripcion)
                 {
+
                     context.Add(Des);
 
                 }

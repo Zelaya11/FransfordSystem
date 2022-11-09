@@ -15,7 +15,7 @@ namespace FransfordSystem.Models
 
         [Display(Name = "Nombre del producto")]
         [Required(ErrorMessage = "Este campo es obligatorio")]
-        public string idProducto { get; set; }
+        public int idProducto { get; set; }
         public Producto? producto { get; set; }
 
         //Fecha vencimiento
@@ -25,10 +25,21 @@ namespace FransfordSystem.Models
         [Column(TypeName = "Date")]
         public DateTime fechaVencimiento { get; set; }
 
-        [Display(Name = "Stock")]
-        [Range(0, 100, ErrorMessage = "Ingrese un numero entre 0 a 100")]
+        [Display(Name = "Cantidad")]
+        [Range(0, 1000000, ErrorMessage = "Ingrese un valor valido")]
         //[Required(ErrorMessage = "Este campo es obligatorio")]
         public int? stock { get; set; }
 
+        [Display(Name = "Entrada")]
+        [Range(0, 1000000, ErrorMessage = "Ingrese un valor valido")]
+        //[Required(ErrorMessage = "Este campo es obligatorio")]
+        public int? entrada { get; set; }
+
+        [Display(Name = "Salida")]
+        [Range(0, 1000000, ErrorMessage = "Ingrese un valor valido")]
+        //[Required(ErrorMessage = "Este campo es obligatorio")]
+        public int? salida { get; set; }
+
+     
     }
 }

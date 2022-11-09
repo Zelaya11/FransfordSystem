@@ -1,0 +1,35 @@
+﻿@model IEnumerable<FransfordSystem.Models.Inventario>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+    <p> 
+    <img src="~/dist/img/AdminLTELogo.png" align="left"><h1 align="center">LABORATORIO CLINICO FRANSFORD</h1>
+    <h5 align="center">CALLE MORAZAN N.13 LOCAL A 2DA.PLANTA 25 METROS AL ORIENTE DE ALCALDIA DE CIUDAD DELGADO TEL.2286-8915 </h5>
+    <h5 align="center">REGISTRO C.S.S.P.  N°  973, LIC.EDWIN GUEVARA ROMERO  J.V.P.L.C. N° 1287 </h5>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.idProducto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.stock)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.producto.nombreProducto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.stock)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

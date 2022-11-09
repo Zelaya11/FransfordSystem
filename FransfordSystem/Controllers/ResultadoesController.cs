@@ -99,6 +99,8 @@ namespace FransfordSystem.Controllers
             
             if (ModelState.IsValid)
             {
+               
+
                 _context.Add(resultado);
                 await _context.SaveChangesAsync();
                 TempData["valorId"] = resultado.idReporteExamen;
