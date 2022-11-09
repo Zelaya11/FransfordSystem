@@ -218,6 +218,8 @@ namespace FransfordSystem.Controllers
             }
         }
 
+
+
         // POST: FacturaExamen/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -234,7 +236,7 @@ namespace FransfordSystem.Controllers
             }
             
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Create));
         }
 
         private bool FacturaExamenExists(int id)

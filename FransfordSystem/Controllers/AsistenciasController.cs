@@ -54,6 +54,7 @@ namespace FransfordSystem.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
+
                 List<Usuario> usuarioLista = new List<Usuario>();
             usuarioLista = (from usuario in _context.Usuario select usuario).ToList();
             ViewBag.usuarioDeLista = usuarioLista;
@@ -126,6 +127,9 @@ namespace FransfordSystem.Controllers
         {
             if (ModelState.IsValid)
             {
+                var usuario1 = _context.Usuario.Find(asistencia.idUsuario);
+                asistencia.usuario = usuario1;
+
                 _context.Add(asistencia);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(MarcarA));

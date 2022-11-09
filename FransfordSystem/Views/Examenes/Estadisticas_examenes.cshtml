@@ -1,12 +1,15 @@
 ﻿@model IEnumerable<FransfordSystem.Models.Examen>
 @using System.Linq;
 
-<h1>Estadísticas de exámenes</h1>
 
 <div>
-
+    <p> 
+    <img src="~/dist/img/AdminLTELogo.png" align="left"><h1 align="center">LABORATORIO CLINICO FRANSFORD</h1>
+    <h5 align="center">CALLE MORAZAN N.13 LOCAL A 2DA.PLANTA 25 METROS AL ORIENTE DE ALCALDIA DE CIUDAD DELGADO TEL.2286-8915 </h5>
+    <h5 align="center">REGISTRO C.S.S.P.  N°  973, LIC.EDWIN GUEVARA ROMERO  J.V.P.L.C. N° 1287 </h5>
+</p>
     <hr />
-    <h5>Exámenes realizados en total por cada cliente: @ViewBag.Resultado.Count</h5>
+    <h5>Exámenes realizados en total: @ViewBag.Resultado.Count</h5>
     <hr />
 
     <table class="table table-hover">
@@ -55,5 +58,5 @@
 
 </div>
 <div>
-    <a asp-action="Index">Regresar a la lista de exámenes</a>
+    <a class="btn btn-info" asp-action="Index">Regresar a la lista de exámenes</a>
 </div>
