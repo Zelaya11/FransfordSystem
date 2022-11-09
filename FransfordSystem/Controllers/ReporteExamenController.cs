@@ -73,6 +73,37 @@ namespace FransfordSystem.Controllers
         }
 
 
+        public async Task<IActionResult> Informe_Reportes(string? searchString)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+             
+                ViewBag.Clientes = await _context.Cliente.ToListAsync();
+
+                ViewBag.Cliente = await _context.Cliente.Where(c => c.IdCliente != 0).ToListAsync();
+                ViewBag.Reportes = await _context.ReporteExamen.Where(rp => rp.IdReporteExamen != 0).ToListAsync();
+                ViewBag.Resultados = await _context.Resultado.Where(re => re.IdResultado != 0).ToListAsync();
+                ViewBag.Descripcion = await _context.Descripcion.Where(d => d.idDescripcion != 0).ToListAsync();
+                ViewBag.Examenes = await _context.Examen.Where(e => e.idExamen != 0).ToListAsync();
+
+
+                //Nuevo código
+                ViewData["CurrentFilter"] = searchString;
+
+                var reportes = from s in _context.ReporteExamen
+                               select s;
+
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    reportes = reportes.Where(s => s.fechaReporte.ToString().Contains(searchString));
+                }
+                //Nuevo código
+
+
+                return View(await reportes.AsNoTracking().ToListAsync());
+            }
+            return Redirect("Identity/Account/Login");
+        }
 
 
         // GET: ReporteExamen/Details/5
