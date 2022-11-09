@@ -1,0 +1,98 @@
+﻿@model IEnumerable<FransfordSystem.Models.ReporteExamen>
+@using System.Linq;
+
+<h1>Estadísticas de reportes</h1>
+
+<form asp-action="Informe_Reportes" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Ingrese la fecha de búsqueda: <input type="text" name="SearchString" placeholder="YYYY-MM-DD" value="@ViewData["CurrentFilter"]" />
+            <input type="submit" value="Buscar" class="btn btn-default" />
+            <a asp-action="Informe_Reportes">Deshacer filtro</a>
+        </p>
+    </div>
+</form>
+
+<div>
+
+    <table class="table table-hover">
+        <thead>
+            <tr align="center">
+                <th>
+                    @Html.DisplayNameFor(model => model.fechaReporte)
+                </th>
+                <th>
+                    <a>Nombre del cliente</a>
+                </th>
+                <th>
+                    <a>Apellido del cliente</a>
+                </th>
+                <th>
+                    <a>Número de exámenes contenidos</a>
+                </th>
+                <th>
+                    <a>Opciones</a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr align="center">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fechaReporte)
+                    </td>
+                    <td>
+                        @{
+                            foreach (Cliente cliente in ViewBag.Clientes)
+                            {
+                                if (item.idCliente == cliente.IdCliente)
+                                {
+                                    <h6>@cliente.nombreCliente</h6>
+                                }
+
+                            }
+                        }
+                    </td>
+                    <td>
+                        @{
+                            foreach (Cliente cliente in ViewBag.Clientes)
+                            {
+                                if (item.idCliente == cliente.IdCliente)
+                                {
+                                    <h6>@cliente.apellidoCliente</h6>
+                                }
+
+                            }
+                        }
+                    </td>
+                    <td align="center">
+                        @{
+                            int acum2 = 0;
+                            foreach (Resultado resultado in ViewBag.Resultados)
+                            {
+                                if (item.IdReporteExamen == resultado.idReporteExamen)
+                                {
+                                    acum2 = acum2 + 1;
+                                }
+
+                            }
+                            <h6>@acum2</h6>
+                        }
+                    </td>
+                    <td align="center">                        
+                        <a asp-action="Details" asp-route-id="@item.IdReporteExamen" class="btn btn-info" role="button" aria-pressed="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+                                <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
+                            </svg> Ver
+                        </a>
+                       
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
