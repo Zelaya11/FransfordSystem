@@ -225,5 +225,37 @@ namespace FransfordSystem.Controllers
         {
           return _context.Factura.Any(e => e.IdFactura == id);
         }
+
+        public async Task<IActionResult> Informe_Facturas(string? searchString)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+
+                ViewBag.Clientes = await _context.Cliente.ToListAsync();
+
+                ViewBag.Cliente = await _context.Cliente.Where(c => c.IdCliente != 0).ToListAsync();
+                ViewBag.Reportes = await _context.ReporteExamen.Where(rp => rp.IdReporteExamen != 0).ToListAsync();
+                ViewBag.Resultados = await _context.Resultado.Where(re => re.IdResultado != 0).ToListAsync();
+                ViewBag.Descripcion = await _context.Descripcion.Where(d => d.idDescripcion != 0).ToListAsync();
+                ViewBag.Examenes = await _context.Examen.Where(e => e.idExamen != 0).ToListAsync();
+                ViewBag.Facturas = await _context.Factura.Where(f => f.IdFactura != 0).ToListAsync();
+
+                //Nuevo código
+                ViewData["CurrentFilter"] = searchString;
+
+                var facturas = from s in _context.Factura
+                               select s;
+
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    facturas = facturas.Where(s => s.fechaFactura.ToString().Contains(searchString));
+                }
+                //Nuevo código
+
+
+                return View(await facturas.AsNoTracking().ToListAsync());
+            }
+            return Redirect("Identity/Account/Login");
+        }
     }
 }

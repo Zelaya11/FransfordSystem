@@ -1,0 +1,121 @@
+﻿@model IEnumerable<FransfordSystem.Models.Factura>
+@using System.Linq;
+
+<h1>Estadísticas de facturas</h1>
+
+<form asp-action="Informe_Facturas" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Ingrese la fecha de búsqueda: <input type="text" name="SearchString" placeholder="YYYY-MM-DD" value="@ViewData["CurrentFilter"]" />
+            <input type="submit" value="Buscar" class="btn btn-default" />
+            <a class="btn btn-info" asp-action="Informe_Facturas">Restablecer filtro</a>
+        </p>
+    </div>
+</form>
+
+@{
+    double acum = 0;
+    foreach (var item in Model)
+    {
+        acum = acum + item.totalFactura;
+    }
+    <h5>El total de ingresos obtenidos en la fecha es: $@acum</h5> 
+}
+
+<div>
+
+    <table class="table table-hover">
+        <thead>
+            <tr align="center">
+                <th>
+                    @Html.DisplayNameFor(model => model.fechaFactura)
+                </th>
+                <th>
+                    <a>Total ($)</a>
+                </th>
+                <th>
+                    <a>Opciones</a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item2 in Model)
+            {
+                <tr align="center">
+                    <td>
+                        @Html.DisplayFor(modelItem => item2.fechaFactura)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item2.totalFactura)
+                    </td>
+                    <td align="center">
+                        <a asp-action="Details" asp-route-id="@item2.IdFactura" class="btn btn-info" role="button" aria-pressed="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                                <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
+                                <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
+                            </svg> Ver
+                        </a>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
