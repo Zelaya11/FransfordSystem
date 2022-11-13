@@ -79,6 +79,7 @@ namespace FransfordSystem.Controllers
                 inventario.producto = producto1;
 
                 inventario.stock = inventario.entrada;
+                inventario.salida = 0;
 
                 _context.Add(inventario);
                 await _context.SaveChangesAsync();
@@ -119,8 +120,8 @@ namespace FransfordSystem.Controllers
             {
                 try
                 {
-                    
-
+            
+                   
                     var anterior = await _context.Inventario.AsNoTracking().FirstOrDefaultAsync(i => i.idInventario == id);
                     var valor = inventario.salida;
                     var valorAn = anterior.salida;
@@ -219,7 +220,7 @@ namespace FransfordSystem.Controllers
                 return NotFound();
             }
 
-            var inventario = await _context.Inventario
+            var inventario = await _context.Inventario.Include(f => f.producto)
                 .FirstOrDefaultAsync(m => m.idInventario == id);
             if (inventario == null)
             {
