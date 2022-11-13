@@ -30,14 +30,15 @@ namespace FransfordSystem.Controllers
             ViewBag.usuarioDeLista = usuarioLista;
 
 
-            var asistencia = from a in _context.Asistencia select a;
+            var asistencia = from a in _context.Asistencia.Include(q=>q.usuario) select a;
             
             if (!String.IsNullOrEmpty(searchString))
             {
-                asistencia = asistencia.Where(s => s.idUsuario!.Contains(searchString));
-            }
+                asistencia = asistencia.Where(s => s.usuario.nombreTrabajador!.Contains(searchString));
+                }
 
-            return View(await asistencia.ToListAsync());
+
+                return View(await asistencia.ToListAsync());
             
 
             return _context.Asistencia != null ?

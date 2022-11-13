@@ -6,13 +6,18 @@
 }
 
 
-<body onload="nombre()">
+<body>
 <h1>Reporte de Asistencia</h1>
 
 <form asp-controller="Asistencias" asp-action="Index" method="get">
     <p>
         Nombre: <input type="text" name="searchString" />
         <input type="submit" value="Buscar" />
+        
+        <form asp-controller="Asistencias" asp-action="Index">
+
+        <input type="submit" value="Deshacer Filtro" />      
+</form>
     </p>
 </form>
 
@@ -37,7 +42,8 @@
 @foreach (var item in Model) {
         <tr align="center">
             <td class="cliente">
-                @Html.DisplayFor(modelItem => item.idUsuario)
+                @Html.DisplayFor(modelItem => item.usuario.nombreTrabajador)
+                @Html.DisplayFor(modelItem => item.usuario.apellidoTrabajador)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.horaEntrada)
@@ -67,27 +73,7 @@
     
 </table>
 
- <script>
-            function nombre() {
-                var list2 = [];
-                var list2 = @Html.Raw(JsonConvert.SerializeObject(ViewBag.usuarioDeLista));
-                let td = document.getElementsByClassName("cliente");
-
-
-                for (let i = 0;i < td.length;i++){
-                    for (let a = 0;a < list2.length; a++) {
-                        if (td[i].innerHTML.trim() == list2[a]['Id']) {
-                            console.log(list2[a]['Id']);
-                        td[i].innerHTML = list2[a]['nombreTrabajador']+ " " + list2[a]['apellidoTrabajador'];
-                        }
-                    }
-                }
-       
-
-            }
-
-
-        </script>
+ 
 
 
 
